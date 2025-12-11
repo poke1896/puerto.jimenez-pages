@@ -201,6 +201,33 @@ function Home() {
         </div>
       </div>
 
+      {/* Mapa de Google Maps */}
+      <div className="soft-card p-4 md:p-6 lg:p-8 space-y-4 bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 animate-fade-in-up">
+        <div className="flex items-center gap-3">
+          <div className="p-3 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl text-white text-2xl md:text-3xl shadow-lg">
+            📍
+          </div>
+          <div>
+            <h2 className="font-display text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              {t.home.howToGetHere.title === 'Cómo llegar' ? 'Ubicación' : 'Location'}
+            </h2>
+            <p className="text-sm md:text-base text-gray-600">Puerto Jiménez, Puntarenas, Costa Rica</p>
+          </div>
+        </div>
+        <div className="relative w-full h-64 md:h-96 rounded-xl overflow-hidden shadow-lg">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7904.2!2d-83.3187!3d8.5334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa95cb9b0aa46f3%3A0x4b8e8b4b4b4b4b4b!2sPuerto%20Jim%C3%A9nez%2C%20Puntarenas!5e0!3m2!1ses!2scr!4v1734000000000!5m2!1ses!2scr"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Mapa de Puerto Jiménez"
+          ></iframe>
+        </div>
+      </div>
+
       <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-3">
         <a href="/turismo" className="group soft-card p-4 md:p-6 lg:p-8 transition-all hover:scale-105 bg-gradient-to-br from-cyan-50 to-blue-50 border-2 border-cyan-200">
           <div className="p-3 md:p-4 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl text-white text-3xl md:text-4xl inline-block shadow-lg mb-3 md:mb-4">
@@ -216,7 +243,7 @@ function Home() {
           <div className="p-3 md:p-4 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl text-white text-3xl md:text-4xl inline-block shadow-lg mb-3 md:mb-4">
             🏪
           </div>
-          <h3 className="font-display text-2xl font-bold text-gray-900">{t.home.sections.services.title}</h3>
+          <h3 className="font-display text-xl md:text-2xl font-bold text-gray-900">{t.home.sections.services.title}</h3>
           <p className="mt-3 text-sm text-gray-700">{t.home.sections.services.description}</p>
           <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-orange-700 group-hover:gap-3 transition-all">
             {t.home.sections.services.cta}
@@ -226,7 +253,7 @@ function Home() {
           <div className="p-3 md:p-4 bg-gradient-to-br from-emerald-500 to-green-500 rounded-2xl text-white text-3xl md:text-4xl inline-block shadow-lg mb-3 md:mb-4">
             🎭
           </div>
-          <h3 className="font-display text-2xl font-bold text-gray-900">{t.home.sections.culture.title}</h3>
+          <h3 className="font-display text-xl md:text-2xl font-bold text-gray-900">{t.home.sections.culture.title}</h3>
           <p className="mt-3 text-sm text-gray-700">{t.home.sections.culture.description}</p>
           <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-emerald-700 group-hover:gap-3 transition-all">
             {t.home.sections.culture.cta}
