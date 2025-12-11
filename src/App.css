@@ -1,0 +1,29 @@
+.app-shell {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fdfbf7 0%, #f0fdf4 100%);
+}
+
+.soft-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 10px 20px -5px rgba(5, 150, 105, 0.12);
+  border: 1px solid rgba(5, 150, 105, 0.12);
+  transition: all 0.25s ease;
+}
+
+.soft-card:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 20px 40px -10px rgba(5, 150, 105, 0.18);
+  transform: translateY(-2px);
+}
+
+.pill {
+  border-radius: 999px;
+  padding: 0.4rem 0.95rem;
+  background: rgba(5, 150, 105, 0.12);
+  border: 1px solid rgba(5, 150, 105, 0.25);
+  color: #047857;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
