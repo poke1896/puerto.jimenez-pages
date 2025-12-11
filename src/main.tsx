@@ -7,6 +7,7 @@ import Home from './pages/Home.tsx'
 import Tourism from './pages/Tourism.tsx'
 import Services from './pages/Services.tsx'
 import Culture from './pages/Culture.tsx'
+import { I18nProvider } from './i18n/I18nContext.tsx'
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <I18nProvider>
+      <RouterProvider router={router} />
+    </I18nProvider>
   </StrictMode>,
 )

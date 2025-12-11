@@ -1,19 +1,23 @@
-import { serviceSpots } from '../data/content'
+import { useI18n } from '../i18n/I18nContext'
+import { getTranslatedServiceSpots } from '../i18n/contentTranslations'
 
 function Services() {
+  const { t, language } = useI18n()
+  const serviceSpots = getTranslatedServiceSpots(language)
+
   return (
     <div className="space-y-10">
       <header className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-orange-500 via-amber-500 to-emerald-500 p-10 text-white shadow-2xl">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-25"></div>
         <div className="relative z-10 space-y-3">
           <div className="text-4xl">🏪🍽️🧭</div>
-          <p className="pill inline-block bg-white/20 border border-white/40 text-white">Servicios</p>
-          <h1 className="font-display text-4xl md:text-5xl font-black drop-shadow-lg">Todo lo útil en Puerto Jiménez</h1>
-          <p className="max-w-3xl text-lg text-amber-50">Directorio completo de comercios, salud, hospedaje, logística y más para planificar tu viaje.</p>
+          <p className="pill inline-block bg-white/20 border border-white/40 text-white">{t.services.header.badge}</p>
+          <h1 className="font-display text-4xl md:text-5xl font-black drop-shadow-lg">{t.services.header.title}</h1>
+          <p className="max-w-3xl text-lg text-amber-50">{t.services.header.description}</p>
           <div className="flex flex-wrap gap-3 text-sm font-semibold">
-            <span className="px-3 py-1 rounded-full bg-white/20 border border-white/30">Restaurantes y sodas</span>
-            <span className="px-3 py-1 rounded-full bg-white/20 border border-white/30">Hoteles y lodges</span>
-            <span className="px-3 py-1 rounded-full bg-white/20 border border-white/30">Salud y supermercados</span>
+            <span className="px-3 py-1 rounded-full bg-white/20 border border-white/30">{t.services.header.tags.restaurants}</span>
+            <span className="px-3 py-1 rounded-full bg-white/20 border border-white/30">{t.services.header.tags.hotels}</span>
+            <span className="px-3 py-1 rounded-full bg-white/20 border border-white/30">{t.services.header.tags.health}</span>
           </div>
         </div>
       </header>
@@ -30,7 +34,7 @@ function Services() {
               </div>
               <div>
                 <h3 className="font-display text-xl text-slate-950">{category.category}</h3>
-                <span className="text-xs font-semibold text-orange-600">{category.items.length} opciones</span>
+                <span className="text-xs font-semibold text-orange-600">{category.items.length} {t.services.options}</span>
               </div>
             </div>
             <ul className="space-y-2 text-sm text-slate-700">

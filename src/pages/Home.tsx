@@ -1,4 +1,8 @@
+import { useI18n } from '../i18n/I18nContext'
+
 function Home() {
+  const { t } = useI18n()
+
   return (
     <div className="space-y-12">
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-500 via-cyan-500 to-blue-500 p-12 text-center text-white shadow-2xl">
@@ -6,15 +10,15 @@ function Home() {
         <div className="relative z-10 space-y-4">
           <div className="text-6xl mb-4">🌴🦜🌺</div>
           <h1 className="font-display text-6xl font-black drop-shadow-lg">
-            Bienvenido a Puerto Jiménez
+            {t.home.hero.title}
           </h1>
           <p className="text-xl text-emerald-50 max-w-3xl mx-auto font-medium">
-            🌿 Puerta de entrada al Parque Nacional Corcovado • 2.5% de la biodiversidad mundial • Península de Osa 🌊
+            {t.home.hero.description}
           </p>
           <div className="flex justify-center gap-4 mt-6">
-            <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/30">🦥 Vida Silvestre</span>
-            <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/30">🏖️ 21 Playas</span>
-            <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/30">🌳 Ecoturismo</span>
+            <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/30">{t.home.hero.badges.wildlife}</span>
+            <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/30">{t.home.hero.badges.beaches}</span>
+            <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/30">{t.home.hero.badges.ecotourism}</span>
           </div>
         </div>
       </div>
@@ -22,9 +26,9 @@ function Home() {
       <div className="space-y-6">
         <div className="text-center space-y-2">
           <h2 className="font-display text-4xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">
-            🚌 Cómo llegar
+            {t.home.howToGetHere.title}
           </h2>
-          <p className="text-gray-600">Múltiples opciones para llegar a tu paraíso tropical</p>
+          <p className="text-gray-600">{t.home.howToGetHere.subtitle}</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
@@ -33,24 +37,24 @@ function Home() {
               <div className="p-3 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl text-white text-3xl shadow-lg">
                 🚌
               </div>
-              <h3 className="font-display text-2xl font-bold text-gray-900">Autobús</h3>
+              <h3 className="font-display text-2xl font-bold text-gray-900">{t.home.howToGetHere.bus.title}</h3>
             </div>
             <div className="space-y-3 text-sm">
               <div>
-                <p className="font-semibold text-slate-900">San José → Puerto Jiménez</p>
-                <p className="text-slate-600">Salida: 12:00 mediodía</p>
-                <p className="text-slate-600">Llegada: ~19:00 (7 horas)</p>
-                <p className="text-slate-600">Precio: ₡8.500 – ₡9.000 (~$14-$16)</p>
-                <p className="text-xs text-slate-500 mt-1">En temporada alta puede haber salida extra 6:00-8:00</p>
+                <p className="font-semibold text-slate-900">{t.home.howToGetHere.bus.sjToPj.title}</p>
+                <p className="text-slate-600">{t.home.howToGetHere.bus.sjToPj.departure}</p>
+                <p className="text-slate-600">{t.home.howToGetHere.bus.sjToPj.arrival}</p>
+                <p className="text-slate-600">{t.home.howToGetHere.bus.sjToPj.price}</p>
+                <p className="text-xs text-slate-500 mt-1">{t.home.howToGetHere.bus.sjToPj.note}</p>
               </div>
               <div>
-                <p className="font-semibold text-slate-900">Puerto Jiménez → San José</p>
-                <p className="text-slate-600">Salida: 12:00 mediodía</p>
-                <p className="text-slate-600">Llegada: ~19:00 (7 horas)</p>
-                <p className="text-slate-600">Precio: ₡8.500 – ₡9.000 (~$14-$16)</p>
-                <p className="text-xs text-slate-500 mt-1">En festivos puede haber salida temprano 5:00-6:00</p>
+                <p className="font-semibold text-slate-900">{t.home.howToGetHere.bus.pjToSj.title}</p>
+                <p className="text-slate-600">{t.home.howToGetHere.bus.pjToSj.departure}</p>
+                <p className="text-slate-600">{t.home.howToGetHere.bus.pjToSj.arrival}</p>
+                <p className="text-slate-600">{t.home.howToGetHere.bus.pjToSj.price}</p>
+                <p className="text-xs text-slate-500 mt-1">{t.home.howToGetHere.bus.pjToSj.note}</p>
               </div>
-              <p className="text-xs text-slate-500 border-t border-slate-200 pt-2">Llegar temprano, el bus se llena rápido. Autotransportes Blanco Lobo.</p>
+              <p className="text-xs text-slate-500 border-t border-slate-200 pt-2">{t.home.howToGetHere.bus.footer}</p>
             </div>
           </article>
 
@@ -59,29 +63,29 @@ function Home() {
               <div className="p-3 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl text-white text-3xl shadow-lg">
                 ⛴️
               </div>
-              <h3 className="font-display text-2xl font-bold text-gray-900">Ferry</h3>
+              <h3 className="font-display text-2xl font-bold text-gray-900">{t.home.howToGetHere.ferry.title}</h3>
             </div>
             <div className="space-y-3 text-sm">
               <div>
-                <p className="font-semibold text-slate-900">Lunes a Viernes</p>
-                <p className="text-slate-600"><strong>PJZ → Golfito:</strong> 07:45 • 10:00 • 11:00 • 12:30 • 15:00</p>
-                <p className="text-slate-600"><strong>Golfito → PJZ:</strong> 06:30 • 08:45 • 11:00 • 13:00 • 16:20</p>
+                <p className="font-semibold text-slate-900">{t.home.howToGetHere.ferry.weekdays.title}</p>
+                <p className="text-slate-600"><strong>{t.home.howToGetHere.ferry.weekdays.pjToGolfito}</strong></p>
+                <p className="text-slate-600"><strong>{t.home.howToGetHere.ferry.weekdays.golfitoToPj}</strong></p>
               </div>
               <div className="border-t border-slate-200 pt-2">
-                <p className="font-semibold text-slate-900">Sábado</p>
-                <p className="text-slate-600"><strong>PJZ → Golfito:</strong> 07:00 • 09:30 • 14:00</p>
-                <p className="text-slate-600"><strong>Golfito → PJZ:</strong> 08:00 • 11:00 • 15:00</p>
+                <p className="font-semibold text-slate-900">{t.home.howToGetHere.ferry.saturday.title}</p>
+                <p className="text-slate-600"><strong>{t.home.howToGetHere.ferry.saturday.pjToGolfito}</strong></p>
+                <p className="text-slate-600"><strong>{t.home.howToGetHere.ferry.saturday.golfitoToPj}</strong></p>
               </div>
               <div className="border-t border-slate-200 pt-2">
-                <p className="font-semibold text-slate-900">Domingo</p>
-                <p className="text-slate-600"><strong>PJZ → Golfito:</strong> 07:00 • 07:30</p>
-                <p className="text-slate-600"><strong>Golfito → PJZ:</strong> 10:00 • 14:00 • 15:00</p>
+                <p className="font-semibold text-slate-900">{t.home.howToGetHere.ferry.sunday.title}</p>
+                <p className="text-slate-600"><strong>{t.home.howToGetHere.ferry.sunday.pjToGolfito}</strong></p>
+                <p className="text-slate-600"><strong>{t.home.howToGetHere.ferry.sunday.golfitoToPj}</strong></p>
               </div>
               <div className="border-t border-slate-200 pt-2">
-                <p className="text-slate-600">Duración: 30-60 min</p>
-                <p className="text-slate-600">Precio: ₡4.000 (~$8) por tramo</p>
+                <p className="text-slate-600">{t.home.howToGetHere.ferry.duration}</p>
+                <p className="text-slate-600">{t.home.howToGetHere.ferry.price}</p>
               </div>
-              <p className="text-xs text-slate-500">Salidas extras en temporada alta. Pueden suspender por clima fuerte.</p>
+              <p className="text-xs text-slate-500">{t.home.howToGetHere.ferry.note}</p>
             </div>
           </article>
 
@@ -90,24 +94,34 @@ function Home() {
               <div className="p-3 bg-gradient-to-br from-emerald-500 to-green-500 rounded-2xl text-white text-3xl shadow-lg">
                 ✈️
               </div>
-              <h3 className="font-display text-2xl font-bold text-gray-900">Avión</h3>
+              <h3 className="font-display text-2xl font-bold text-gray-900">{t.home.howToGetHere.plane.title}</h3>
             </div>
             <div className="space-y-3 text-sm">
               <div>
-                <p className="font-semibold text-slate-900">San José → Puerto Jiménez</p>
-                <p className="text-slate-600"><strong>Temp. alta:</strong> 05:45 • 06:30 • 07:40 • 08:00 • 09:30 • 11:00</p>
-                <p className="text-slate-600"><strong>Temp. baja:</strong> 05:45 • 07:40 • 08:00</p>
+                <p className="font-semibold text-slate-900">{t.home.howToGetHere.plane.sjToPj.title}</p>
+                <p className="text-slate-600"><strong>{t.home.howToGetHere.plane.sjToPj.highSeason}</strong></p>
+                <p className="text-slate-600"><strong>{t.home.howToGetHere.plane.sjToPj.lowSeason}</strong></p>
               </div>
               <div>
-                <p className="font-semibold text-slate-900">Puerto Jiménez → San José</p>
-                <p className="text-slate-600"><strong>Temp. alta:</strong> 06:30 • 07:30 • 09:00 • 11:20 • 12:00</p>
-                <p className="text-slate-600"><strong>Temp. baja:</strong> 06:30 • 09:00 • 11:20</p>
+                <p className="font-semibold text-slate-900">{t.home.howToGetHere.plane.pjToSj.title}</p>
+                <p className="text-slate-600"><strong>{t.home.howToGetHere.plane.pjToSj.highSeason}</strong></p>
+                <p className="text-slate-600"><strong>{t.home.howToGetHere.plane.pjToSj.lowSeason}</strong></p>
               </div>
               <div className="border-t border-slate-200 pt-2">
-                <p className="text-slate-600">Duración: 45-55 min</p>
-                <p className="text-slate-600">Precio: $90-$170 (baja) • $150-$320+ (alta)</p>
+                <p className="text-slate-600">{t.home.howToGetHere.plane.duration}</p>
+                <p className="text-slate-600">{t.home.howToGetHere.plane.price}</p>
               </div>
-              <p className="text-xs text-slate-500">Reservar con anticipación. Revisar peso de equipaje (SANSA es estricta).</p>
+              <p className="text-xs text-slate-500">
+                {t.home.howToGetHere.plane.note}{' '}
+                <a 
+                  href={t.home.howToGetHere.plane.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-800 font-semibold underline"
+                >
+                  flysansa.com
+                </a>
+              </p>
             </div>
           </article>
         </div>
@@ -119,36 +133,36 @@ function Home() {
             <div className="p-3 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl text-white text-2xl shadow-lg">
               📍
             </div>
-            <h2 className="font-display text-2xl font-bold text-gray-900">Datos útiles</h2>
+            <h2 className="font-display text-2xl font-bold text-gray-900">{t.home.usefulInfo.title}</h2>
           </div>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between border-b border-slate-100 pb-2">
-              <span className="text-slate-600">Clima</span>
-              <span className="font-semibold text-slate-900">Tropical lluvioso</span>
+              <span className="text-slate-600">{t.home.usefulInfo.climate}</span>
+              <span className="font-semibold text-slate-900">{t.home.usefulInfo.climateValue}</span>
             </div>
             <div className="flex justify-between border-b border-slate-100 pb-2">
-              <span className="text-slate-600">Temp. promedio</span>
-              <span className="font-semibold text-slate-900">24-32°C</span>
+              <span className="text-slate-600">{t.home.usefulInfo.avgTemp}</span>
+              <span className="font-semibold text-slate-900">{t.home.usefulInfo.avgTempValue}</span>
             </div>
             <div className="flex justify-between border-b border-slate-100 pb-2">
-              <span className="text-slate-600">Temporada seca</span>
-              <span className="font-semibold text-slate-900">Diciembre - Abril</span>
+              <span className="text-slate-600">{t.home.usefulInfo.drySeason}</span>
+              <span className="font-semibold text-slate-900">{t.home.usefulInfo.drySeasonValue}</span>
             </div>
             <div className="flex justify-between border-b border-slate-100 pb-2">
-              <span className="text-slate-600">Temporada verde</span>
-              <span className="font-semibold text-slate-900">Mayo - Noviembre</span>
+              <span className="text-slate-600">{t.home.usefulInfo.greenSeason}</span>
+              <span className="font-semibold text-slate-900">{t.home.usefulInfo.greenSeasonValue}</span>
             </div>
             <div className="flex justify-between border-b border-slate-100 pb-2">
-              <span className="text-slate-600">Moneda</span>
-              <span className="font-semibold text-slate-900">Colón (₡) / USD acepta</span>
+              <span className="text-slate-600">{t.home.usefulInfo.currency}</span>
+              <span className="font-semibold text-slate-900">{t.home.usefulInfo.currencyValue}</span>
             </div>
             <div className="flex justify-between border-b border-slate-100 pb-2">
-              <span className="text-slate-600">Cajeros ATM</span>
-              <span className="font-semibold text-slate-900">Disponibles en el pueblo</span>
+              <span className="text-slate-600">{t.home.usefulInfo.atm}</span>
+              <span className="font-semibold text-slate-900">{t.home.usefulInfo.atmValue}</span>
             </div>
             <div className="flex justify-between pb-2">
-              <span className="text-slate-600">Emergencias</span>
-              <span className="font-semibold text-slate-900">911</span>
+              <span className="text-slate-600">{t.home.usefulInfo.emergency}</span>
+              <span className="font-semibold text-slate-900">{t.home.usefulInfo.emergencyValue}</span>
             </div>
           </div>
         </article>
@@ -158,37 +172,15 @@ function Home() {
             <div className="p-3 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl text-white text-2xl shadow-lg">
               💡
             </div>
-            <h2 className="font-display text-2xl font-bold text-gray-900">Consejos rápidos</h2>
+            <h2 className="font-display text-2xl font-bold text-gray-900">{t.home.quickTips.title}</h2>
           </div>
           <ul className="space-y-3 text-sm text-slate-700">
-            <li className="flex gap-2">
-              <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-400" />
-              <span>Llevar efectivo (colones), no todos aceptan tarjetas</span>
-            </li>
-            <li className="flex gap-2">
-              <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-400" />
-              <span>Reservar tours a Corcovado con anticipación (cupo limitado)</span>
-            </li>
-            <li className="flex gap-2">
-              <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-400" />
-              <span>Traer repelente, bloqueador y ropa ligera</span>
-            </li>
-            <li className="flex gap-2">
-              <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-400" />
-              <span>El internet puede ser lento en zonas remotas</span>
-            </li>
-            <li className="flex gap-2">
-              <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-400" />
-              <span>Consultar horarios de marea para tours de kayak</span>
-            </li>
-            <li className="flex gap-2">
-              <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-400" />
-              <span>Las sodas cierran temprano (8-9 pm)</span>
-            </li>
-            <li className="flex gap-2">
-              <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-400" />
-              <span>Alquilar 4x4 si planeas explorar playas remotas</span>
-            </li>
+            {t.home.quickTips.tips.map((tip, index) => (
+              <li key={index} className="flex gap-2">
+                <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-400" />
+                <span>{tip}</span>
+              </li>
+            ))}
           </ul>
         </article>
       </div>
@@ -196,39 +188,16 @@ function Home() {
       <div className="soft-card p-10 space-y-6 bg-gradient-to-br from-emerald-50 via-green-50 to-cyan-50 border-2 border-emerald-200">
         <div className="flex items-center justify-center gap-3">
           <span className="text-4xl">🌟</span>
-          <h2 className="font-display text-3xl font-bold text-center bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">Por qué visitar Puerto Jiménez</h2>
+          <h2 className="font-display text-3xl font-bold text-center bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">{t.home.whyVisit.title}</h2>
         </div>
         <div className="grid gap-6 md:grid-cols-3">
-          <div className="space-y-2 p-4 bg-white rounded-xl">
-            <div className="text-2xl mb-2">🦋</div>
-            <h3 className="font-bold text-lg text-emerald-700">Biodiversidad única</h3>
-            <p className="text-sm text-gray-700">Hogar del 2.5% de la biodiversidad mundial. Parque Nacional Corcovado, uno de los ecosistemas más diversos del planeta.</p>
-          </div>
-          <div className="space-y-2 p-4 bg-white rounded-xl">
-            <div className="text-2xl mb-2">🏖️</div>
-            <h3 className="font-bold text-lg text-cyan-700">Playas vírgenes</h3>
-            <p className="text-sm text-gray-700">21 playas desde tranquilas hasta salvajes. Desde Golfo Dulce hasta el Pacífico abierto, cada una con su propia personalidad.</p>
-          </div>
-          <div className="space-y-2 p-4 bg-white rounded-xl">
-            <div className="text-2xl mb-2">🤝</div>
-            <h3 className="font-bold text-lg text-emerald-700">Vida local auténtica</h3>
-            <p className="text-sm text-gray-700">Pueblo tranquilo con cultura costarricense auténtica. Pesca artesanal, sodas familiares y ritmo de vida pausado.</p>
-          </div>
-          <div className="space-y-2 p-4 bg-white rounded-xl">
-            <div className="text-2xl mb-2">🐬</div>
-            <h3 className="font-bold text-lg text-blue-700">Aventuras marinas</h3>
-            <p className="text-sm text-gray-700">Delfines, ballenas jorobadas, snorkel, kayak en manglares y bioluminiscencia nocturna en aguas calmadas.</p>
-          </div>
-          <div className="space-y-2 p-4 bg-white rounded-xl">
-            <div className="text-2xl mb-2">♻️</div>
-            <h3 className="font-bold text-lg text-green-700">Turismo sostenible</h3>
-            <p className="text-sm text-gray-700">Comunidad comprometida con conservación. Lodges ecológicos, guías locales certificados y respeto por la naturaleza.</p>
-          </div>
-          <div className="space-y-2 p-4 bg-white rounded-xl">
-            <div className="text-2xl mb-2">🌳</div>
-            <h3 className="font-bold text-lg text-emerald-700">Acceso directo a Corcovado</h3>
-            <p className="text-sm text-gray-700">Punto de entrada principal al parque. Opciones de día completo o expediciones con pernocta en estación Sirena.</p>
-          </div>
+          {t.home.whyVisit.reasons.map((reason, index) => (
+            <div key={index} className="space-y-2 p-4 bg-white rounded-xl">
+              <div className="text-2xl mb-2">{['🦋', '🏖️', '🤝', '🐬', '♻️', '🌳'][index]}</div>
+              <h3 className="font-bold text-lg text-emerald-700">{reason.title}</h3>
+              <p className="text-sm text-gray-700">{reason.description}</p>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -237,30 +206,30 @@ function Home() {
           <div className="p-4 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl text-white text-4xl inline-block shadow-lg mb-4">
             🏖️
           </div>
-          <h3 className="font-display text-2xl font-bold text-gray-900">Lugares turísticos</h3>
-          <p className="mt-3 text-sm text-gray-700">21 playas, Parque Nacional Corcovado, manglares, ríos, cascadas y refugios de vida silvestre.</p>
+          <h3 className="font-display text-2xl font-bold text-gray-900">{t.home.sections.tourism.title}</h3>
+          <p className="mt-3 text-sm text-gray-700">{t.home.sections.tourism.description}</p>
           <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-cyan-700 group-hover:gap-3 transition-all">
-            Ver todos los lugares →
+            {t.home.sections.tourism.cta}
           </span>
         </a>
         <a href="/servicios" className="group soft-card p-8 transition-all hover:scale-105 bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200">
           <div className="p-4 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl text-white text-4xl inline-block shadow-lg mb-4">
             🏪
           </div>
-          <h3 className="font-display text-2xl font-bold text-gray-900">Servicios</h3>
-          <p className="mt-3 text-sm text-gray-700">Restaurantes, hoteles, supermercados, salud, ferreterías, veterinarias y todo lo necesario.</p>
+          <h3 className="font-display text-2xl font-bold text-gray-900">{t.home.sections.services.title}</h3>
+          <p className="mt-3 text-sm text-gray-700">{t.home.sections.services.description}</p>
           <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-orange-700 group-hover:gap-3 transition-all">
-            Ver directorio completo →
+            {t.home.sections.services.cta}
           </span>
         </a>
         <a href="/cultura" className="group soft-card p-8 transition-all hover:scale-105 bg-gradient-to-br from-emerald-50 to-green-50 border-2 border-emerald-200">
           <div className="p-4 bg-gradient-to-br from-emerald-500 to-green-500 rounded-2xl text-white text-4xl inline-block shadow-lg mb-4">
             🎭
           </div>
-          <h3 className="font-display text-2xl font-bold text-gray-900">Cultura</h3>
-          <p className="mt-3 text-sm text-gray-700">Tradiciones locales, gastronomía, música, pesca artesanal, cacao, café y vida comunitaria.</p>
+          <h3 className="font-display text-2xl font-bold text-gray-900">{t.home.sections.culture.title}</h3>
+          <p className="mt-3 text-sm text-gray-700">{t.home.sections.culture.description}</p>
           <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-emerald-700 group-hover:gap-3 transition-all">
-            Conocer la cultura →
+            {t.home.sections.culture.cta}
           </span>
         </a>
       </div>
