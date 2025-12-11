@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext'
 
 function Home() {
@@ -229,7 +230,7 @@ function Home() {
       </div>
 
       <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-3">
-        <a href="/turismo" className="group soft-card p-4 md:p-6 lg:p-8 transition-all hover:scale-105 bg-gradient-to-br from-cyan-50 to-blue-50 border-2 border-cyan-200">
+        <Link to="/turismo" className="group soft-card p-4 md:p-6 lg:p-8 transition-all hover:scale-105 bg-gradient-to-br from-cyan-50 to-blue-50 border-2 border-cyan-200">
           <div className="p-3 md:p-4 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl text-white text-3xl md:text-4xl inline-block shadow-lg mb-3 md:mb-4">
             🏖️
           </div>
@@ -238,8 +239,8 @@ function Home() {
           <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-cyan-700 group-hover:gap-3 transition-all">
             {t.home.sections.tourism.cta}
           </span>
-        </a>
-        <a href="/servicios" className="group soft-card p-4 md:p-6 lg:p-8 transition-all hover:scale-105 bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200">
+        </Link>
+        <Link to="/servicios" className="group soft-card p-4 md:p-6 lg:p-8 transition-all hover:scale-105 bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200">
           <div className="p-3 md:p-4 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl text-white text-3xl md:text-4xl inline-block shadow-lg mb-3 md:mb-4">
             🏪
           </div>
@@ -248,8 +249,8 @@ function Home() {
           <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-orange-700 group-hover:gap-3 transition-all">
             {t.home.sections.services.cta}
           </span>
-        </a>
-        <a href="/cultura" className="group soft-card p-4 md:p-6 lg:p-8 transition-all hover:scale-105 bg-gradient-to-br from-emerald-50 to-green-50 border-2 border-emerald-200">
+        </Link>
+        <Link to="/cultura" className="group soft-card p-4 md:p-6 lg:p-8 transition-all hover:scale-105 bg-gradient-to-br from-emerald-50 to-green-50 border-2 border-emerald-200">
           <div className="p-3 md:p-4 bg-gradient-to-br from-emerald-500 to-green-500 rounded-2xl text-white text-3xl md:text-4xl inline-block shadow-lg mb-3 md:mb-4">
             🎭
           </div>
@@ -258,7 +259,7 @@ function Home() {
           <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-emerald-700 group-hover:gap-3 transition-all">
             {t.home.sections.culture.cta}
           </span>
-        </a>
+        </Link>
       </div>
     </div>
   )
