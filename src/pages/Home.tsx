@@ -5,39 +5,39 @@ function Home() {
 
   return (
     <div className="space-y-12">
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-500 via-cyan-500 to-blue-500 p-12 text-center text-white shadow-2xl">
+      <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-br from-emerald-500 via-cyan-500 to-blue-500 p-6 md:p-10 lg:p-12 text-center text-white shadow-2xl animate-fade-in-up">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-30"></div>
-        <div className="relative z-10 space-y-4">
-          <div className="text-6xl mb-4">🌴🦜🌺</div>
-          <h1 className="font-display text-6xl font-black drop-shadow-lg">
+        <div className="relative z-10 space-y-3 md:space-y-4">
+          <div className="text-4xl md:text-5xl lg:text-6xl mb-3 md:mb-4">🌴🦜🌺</div>
+          <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-black drop-shadow-lg">
             {t.home.hero.title}
           </h1>
-          <p className="text-xl text-emerald-50 max-w-3xl mx-auto font-medium">
+          <p className="text-base md:text-lg lg:text-xl text-emerald-50 max-w-3xl mx-auto font-medium px-2">
             {t.home.hero.description}
           </p>
-          <div className="flex justify-center gap-4 mt-6">
-            <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/30">{t.home.hero.badges.wildlife}</span>
-            <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/30">{t.home.hero.badges.beaches}</span>
-            <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/30">{t.home.hero.badges.ecotourism}</span>
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mt-4 md:mt-6 px-2">
+            <span className="px-3 md:px-4 py-1.5 md:py-2 bg-white/20 backdrop-blur-sm rounded-full text-xs md:text-sm font-semibold border border-white/30">{t.home.hero.badges.wildlife}</span>
+            <span className="px-3 md:px-4 py-1.5 md:py-2 bg-white/20 backdrop-blur-sm rounded-full text-xs md:text-sm font-semibold border border-white/30">{t.home.hero.badges.beaches}</span>
+            <span className="px-3 md:px-4 py-1.5 md:py-2 bg-white/20 backdrop-blur-sm rounded-full text-xs md:text-sm font-semibold border border-white/30">{t.home.hero.badges.ecotourism}</span>
           </div>
         </div>
       </div>
 
-      <div className="space-y-6">
-        <div className="text-center space-y-2">
-          <h2 className="font-display text-4xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">
+      <div className="space-y-4 md:space-y-6 animate-fade-in-up animate-delay-200">
+        <div className="text-center space-y-2 px-2">
+          <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">
             {t.home.howToGetHere.title}
           </h2>
-          <p className="text-gray-600">{t.home.howToGetHere.subtitle}</p>
+          <p className="text-sm md:text-base text-gray-600">{t.home.howToGetHere.subtitle}</p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
-          <article className="soft-card p-8 space-y-4 border-l-4 border-orange-500">
+        <div className="grid gap-4 md:gap-6 grid-cols-1 lg:grid-cols-3">
+          <article className="soft-card p-4 md:p-6 lg:p-8 space-y-3 md:space-y-4 border-l-4 border-orange-500 animate-fade-in-left animate-delay-300 hover:scale-105 transition-transform duration-300">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl text-white text-3xl shadow-lg">
                 🚌
               </div>
-              <h3 className="font-display text-2xl font-bold text-gray-900">{t.home.howToGetHere.bus.title}</h3>
+              <h3 className="font-display text-xl md:text-2xl font-bold text-gray-900">{t.home.howToGetHere.bus.title}</h3>
             </div>
             <div className="space-y-3 text-sm">
               <div>
@@ -58,7 +58,7 @@ function Home() {
             </div>
           </article>
 
-          <article className="soft-card p-8 space-y-4 border-l-4 border-cyan-500">
+          <article className="soft-card p-4 md:p-6 lg:p-8 space-y-3 md:space-y-4 border-l-4 border-cyan-500 animate-fade-in-up animate-delay-400 hover:scale-105 transition-transform duration-300">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl text-white text-3xl shadow-lg">
                 ⛴️
@@ -89,7 +89,7 @@ function Home() {
             </div>
           </article>
 
-          <article className="soft-card rounded-2xl p-6 space-y-4">
+          <article className="soft-card rounded-2xl p-4 md:p-6 space-y-3 md:space-y-4 animate-fade-in-right animate-delay-500 hover:scale-105 transition-transform duration-300">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-gradient-to-br from-emerald-500 to-green-500 rounded-2xl text-white text-3xl shadow-lg">
                 ✈️
@@ -127,13 +127,13 @@ function Home() {
         </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <article className="soft-card p-8 space-y-4 bg-gradient-to-br from-blue-50 to-cyan-50">
-          <div className="flex items-center gap-3">
-            <div className="p-3 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl text-white text-2xl shadow-lg">
+      <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-2">
+        <article className="soft-card p-4 md:p-6 lg:p-8 space-y-3 md:space-y-4 bg-gradient-to-br from-blue-50 to-cyan-50 animate-fade-in-left animate-delay-200">
+          <div className="flex items-center gap-2 md:gap-3">
+            <div className="p-2 md:p-3 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl text-white text-xl md:text-2xl shadow-lg">
               📍
             </div>
-            <h2 className="font-display text-2xl font-bold text-gray-900">{t.home.usefulInfo.title}</h2>
+            <h2 className="font-display text-xl md:text-2xl font-bold text-gray-900">{t.home.usefulInfo.title}</h2>
           </div>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between border-b border-slate-100 pb-2">
@@ -167,12 +167,12 @@ function Home() {
           </div>
         </article>
 
-        <article className="soft-card p-8 space-y-4 bg-gradient-to-br from-amber-50 to-orange-50">
-          <div className="flex items-center gap-3">
-            <div className="p-3 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl text-white text-2xl shadow-lg">
+        <article className="soft-card p-4 md:p-6 lg:p-8 space-y-3 md:space-y-4 bg-gradient-to-br from-amber-50 to-orange-50 animate-fade-in-right animate-delay-300">
+          <div className="flex items-center gap-2 md:gap-3">
+            <div className="p-2 md:p-3 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl text-white text-xl md:text-2xl shadow-lg">
               💡
             </div>
-            <h2 className="font-display text-2xl font-bold text-gray-900">{t.home.quickTips.title}</h2>
+            <h2 className="font-display text-xl md:text-2xl font-bold text-gray-900">{t.home.quickTips.title}</h2>
           </div>
           <ul className="space-y-3 text-sm text-slate-700">
             {t.home.quickTips.tips.map((tip, index) => (
@@ -185,12 +185,12 @@ function Home() {
         </article>
       </div>
 
-      <div className="soft-card p-10 space-y-6 bg-gradient-to-br from-emerald-50 via-green-50 to-cyan-50 border-2 border-emerald-200">
-        <div className="flex items-center justify-center gap-3">
-          <span className="text-4xl">🌟</span>
-          <h2 className="font-display text-3xl font-bold text-center bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">{t.home.whyVisit.title}</h2>
+      <div className="soft-card p-4 md:p-8 lg:p-10 space-y-4 md:space-y-6 bg-gradient-to-br from-emerald-50 via-green-50 to-cyan-50 border-2 border-emerald-200 animate-scale-in animate-delay-200">
+        <div className="flex items-center justify-center gap-2 md:gap-3">
+          <span className="text-3xl md:text-4xl">🌟</span>
+          <h2 className="font-display text-2xl md:text-3xl font-bold text-center bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">{t.home.whyVisit.title}</h2>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-3 md:gap-4 lg:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {t.home.whyVisit.reasons.map((reason, index) => (
             <div key={index} className="space-y-2 p-4 bg-white rounded-xl">
               <div className="text-2xl mb-2">{['🦋', '🏖️', '🤝', '🐬', '♻️', '🌳'][index]}</div>
@@ -201,19 +201,19 @@ function Home() {
         </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
-        <a href="/turismo" className="group soft-card p-8 transition-all hover:scale-105 bg-gradient-to-br from-cyan-50 to-blue-50 border-2 border-cyan-200">
-          <div className="p-4 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl text-white text-4xl inline-block shadow-lg mb-4">
+      <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-3">
+        <a href="/turismo" className="group soft-card p-4 md:p-6 lg:p-8 transition-all hover:scale-105 bg-gradient-to-br from-cyan-50 to-blue-50 border-2 border-cyan-200">
+          <div className="p-3 md:p-4 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl text-white text-3xl md:text-4xl inline-block shadow-lg mb-3 md:mb-4">
             🏖️
           </div>
-          <h3 className="font-display text-2xl font-bold text-gray-900">{t.home.sections.tourism.title}</h3>
+          <h3 className="font-display text-xl md:text-2xl font-bold text-gray-900">{t.home.sections.tourism.title}</h3>
           <p className="mt-3 text-sm text-gray-700">{t.home.sections.tourism.description}</p>
           <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-cyan-700 group-hover:gap-3 transition-all">
             {t.home.sections.tourism.cta}
           </span>
         </a>
-        <a href="/servicios" className="group soft-card p-8 transition-all hover:scale-105 bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200">
-          <div className="p-4 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl text-white text-4xl inline-block shadow-lg mb-4">
+        <a href="/servicios" className="group soft-card p-4 md:p-6 lg:p-8 transition-all hover:scale-105 bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200">
+          <div className="p-3 md:p-4 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl text-white text-3xl md:text-4xl inline-block shadow-lg mb-3 md:mb-4">
             🏪
           </div>
           <h3 className="font-display text-2xl font-bold text-gray-900">{t.home.sections.services.title}</h3>
@@ -222,8 +222,8 @@ function Home() {
             {t.home.sections.services.cta}
           </span>
         </a>
-        <a href="/cultura" className="group soft-card p-8 transition-all hover:scale-105 bg-gradient-to-br from-emerald-50 to-green-50 border-2 border-emerald-200">
-          <div className="p-4 bg-gradient-to-br from-emerald-500 to-green-500 rounded-2xl text-white text-4xl inline-block shadow-lg mb-4">
+        <a href="/cultura" className="group soft-card p-4 md:p-6 lg:p-8 transition-all hover:scale-105 bg-gradient-to-br from-emerald-50 to-green-50 border-2 border-emerald-200">
+          <div className="p-3 md:p-4 bg-gradient-to-br from-emerald-500 to-green-500 rounded-2xl text-white text-3xl md:text-4xl inline-block shadow-lg mb-3 md:mb-4">
             🎭
           </div>
           <h3 className="font-display text-2xl font-bold text-gray-900">{t.home.sections.culture.title}</h3>
