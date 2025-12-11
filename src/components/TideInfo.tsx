@@ -15,53 +15,120 @@ interface StormGlassResponse {
 const PUERTO_JIMENEZ_LAT = 8.5334
 const PUERTO_JIMENEZ_LON = -83.3187
 
-// API Key de Stormglass
-const STORMGLASS_API_KEY = '10cc1f6c-d6c4-11f0-a148-0242ac130003-10cc1fc6-d6c4-11f0-a148-0242ac130003'
+// API Keys / endpoints
+const STORMGLASS_API_KEY = import.meta.env.VITE_STORMGLASS_API_KEY || '10cc1f6c-d6c4-11f0-a148-0242ac130003-10cc1fc6-d6c4-11f0-a148-0242ac130003'
+const MAREA_TOKEN = import.meta.env.VITE_MAREA_TOKEN || '7148abbd-9e69-4d1c-bfc3-e7de1ca87e06'
+const MAREA_ENDPOINT = import.meta.env.VITE_MAREA_URL || 'https://api.marea.ooo/v2/tides'
+
+type TideProvider = 'marea' | 'stormglass'
 
 export function TideInfo() {
   const { language } = useI18n()
   const [tideData, setTideData] = useState<TideExtreme[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [provider, setProvider] = useState<TideProvider | null>(null)
 
   useEffect(() => {
-    const fetchTideData = async () => {
-      try {
-        setLoading(true)
-        
-        // Obtener inicio y fin del día actual
-        const start = Math.floor(new Date().setHours(0, 0, 0, 0) / 1000)
-        const end = Math.floor(new Date().setHours(23, 59, 59, 999) / 1000)
-        
-        const url = `https://api.stormglass.io/v2/tide/extremes/point?lat=${PUERTO_JIMENEZ_LAT}&lng=${PUERTO_JIMENEZ_LON}&start=${start}&end=${end}`
-        
-        const response = await fetch(url, {
+    const nowTs = Math.floor(Date.now() / 1000)
+    const startDay = Math.floor(new Date().setHours(0, 0, 0, 0) / 1000)
+    const endDay = Math.floor(new Date().setHours(23, 59, 59, 999) / 1000)
+
+    const normalizeMarea = (payload: any): TideExtreme[] => {
+      const items = payload?.data || payload?.extremes || payload?.result || []
+      return (items as any[]).map((item) => {
+        const rawType = (item.type || item.event || item.tide || item.state || '').toString().toLowerCase()
+        const resolvedType: TideExtreme['type'] = rawType.includes('high') || rawType.includes('plea') ? 'high' : 'low'
+        const timeValue = item.time || item.datetime || item.timestamp || item.date
+        const heightValue = typeof item.height === 'number' ? item.height : (item.value || item.level || 0)
+        return {
+          type: resolvedType,
+          time: typeof timeValue === 'number' ? new Date(timeValue * 1000).toISOString() : timeValue,
+          height: heightValue
+        }
+      }).filter((item) => item.time)
+    }
+
+    const fetchFromMarea = async (): Promise<TideExtreme[]> => {
+      if (!MAREA_TOKEN) return []
+      const durationMinutes = 1440 // 24h
+      const intervalMinutes = 60
+
+      // Primer intento con radio moderado; si falla, probamos con radio más amplio
+      const tryFetch = async (radius: number) => {
+        const url = `${MAREA_ENDPOINT}?latitude=${PUERTO_JIMENEZ_LAT}&longitude=${PUERTO_JIMENEZ_LON}&timestamp=${nowTs}&duration=${durationMinutes}&interval=${intervalMinutes}&radius=${radius}&model=FES2014`
+
+        const resp = await fetch(url, {
           headers: {
-            'Authorization': STORMGLASS_API_KEY
+            'x-marea-api-token': MAREA_TOKEN
           }
         })
-        
-        if (!response.ok) {
-          throw new Error('Error en la respuesta de la API')
+
+        if (!resp.ok) {
+          const text = await resp.text()
+          throw new Error(`Marea API error (${resp.status}): ${text}`)
         }
-        
-        const data: StormGlassResponse = await response.json()
-        
-        if (data.data && data.data.length > 0) {
-          setTideData(data.data)
-          setError(null)
-        } else {
-          setError('No hay datos disponibles')
+
+        const payload = await resp.json()
+        const normalized = normalizeMarea(payload)
+        if (!normalized.length) {
+          throw new Error('Marea sin datos')
         }
+        return normalized
+      }
+
+      try {
+        return await tryFetch(50)
       } catch (err) {
-        setError('Error al cargar datos de mareas')
-        console.error('Error fetching tide data:', err)
-      } finally {
-        setLoading(false)
+        console.warn('Reintentando Marea con mayor radio', err)
+        return await tryFetch(400)
       }
     }
 
-    fetchTideData()
+    const fetchFromStormGlass = async (): Promise<TideExtreme[]> => {
+      const url = `https://api.stormglass.io/v2/tide/extremes/point?lat=${PUERTO_JIMENEZ_LAT}&lng=${PUERTO_JIMENEZ_LON}&start=${startDay}&end=${endDay}`
+      const response = await fetch(url, {
+        headers: {
+          Authorization: STORMGLASS_API_KEY
+        }
+      })
+
+      if (!response.ok) {
+        throw new Error('Stormglass API error')
+      }
+
+      const data: StormGlassResponse = await response.json()
+      if (!data.data || data.data.length === 0) {
+        throw new Error('Stormglass sin datos')
+      }
+      return data.data
+    }
+
+    const providers: { name: TideProvider; fetcher: () => Promise<TideExtreme[]>; enabled: boolean }[] = [
+      { name: 'marea', fetcher: fetchFromMarea, enabled: Boolean(MAREA_TOKEN) },
+      { name: 'stormglass', fetcher: fetchFromStormGlass, enabled: true }
+    ]
+
+    const fetchTideData = async () => {
+      setLoading(true)
+      setError(null)
+      let lastError = ''
+      for (const candidate of providers.filter((p) => p.enabled)) {
+        try {
+          const data = await candidate.fetcher()
+          setTideData(data)
+          setProvider(candidate.name)
+          return
+        } catch (err) {
+          const message = err instanceof Error ? err.message : String(err)
+          lastError = `${candidate.name}: ${message}`
+          console.error(`Error con proveedor ${candidate.name}:`, err)
+        }
+      }
+      setError(lastError || 'No hay datos disponibles')
+    }
+
+    fetchTideData().finally(() => setLoading(false))
   }, [])
 
   const formatTime = (timeString: string) => {
@@ -172,9 +239,15 @@ export function TideInfo() {
 
       <div className="text-xs text-gray-500 text-center pt-2 border-t border-gray-200">
         {language === 'es' ? 'Datos proporcionados por' : 'Data provided by'}{' '}
-        <a href="https://stormglass.io" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-          Stormglass.io
-        </a>
+        {provider === 'marea' ? (
+          <a href="https://api.marea.ooo/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+            Marea
+          </a>
+        ) : (
+          <a href="https://stormglass.io" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+            Stormglass.io
+          </a>
+        )}
       </div>
     </div>
   )
