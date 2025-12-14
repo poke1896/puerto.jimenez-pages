@@ -39,12 +39,29 @@ function Services() {
               </div>
             </div>
             <ul className="space-y-2 text-sm text-slate-700">
-              {category.items.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-orange-400" />
-                  <span>{item}</span>
-                </li>
-              ))}
+              {category.items.map((item) => {
+                const baseContext = 'Puerto Jiménez, Puntarenas, Costa Rica'
+                const itemName = typeof item === 'string' ? item : item.name
+                const nameQuery = encodeURIComponent(`${itemName} ${baseContext}`)
+                const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${nameQuery}`
+
+                return (
+                  <li key={itemName} className="flex gap-2 group">
+                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-orange-400" />
+                    <a
+                      href={mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 hover:text-orange-600 transition-colors cursor-pointer"
+                    >
+                      <span>{itemName}</span>
+                      <span className="text-orange-500 opacity-0 group-hover:opacity-100 transition-opacity" title={language === 'es' ? 'Ver en Google Maps' : 'View on Google Maps'}>
+                        📍
+                      </span>
+                    </a>
+                  </li>
+                )
+              })}
             </ul>
           </article>
         ))}
