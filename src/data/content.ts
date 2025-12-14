@@ -11,6 +11,8 @@ export type TouristCategory = {
   places: Array<{
     name: string
     description: string
+    lat?: number
+    lng?: number
   }>
 }
 
@@ -19,46 +21,46 @@ export const touristSpots: TouristCategory[] = [
     category: 'Playas',
     icon: '🏖️',
     places: [
-      { name: 'Playa Preciosa (Platanares)', description: 'Amplia, tranquila, perfecta para caminatas y avistamiento de aves.' },
-      { name: 'Playa Pan Dulce', description: 'Famosa por su oleaje suave y apto para surfistas principiantes.' },
-      { name: 'Playa Matapalo (Cabo Matapalo)', description: 'Playa salvaje rodeada de selva, excelente para naturaleza y surf.' },
-      { name: 'Playa Sombrero', description: 'Popular para surf y para pasar el día en un ambiente natural.' },
-      { name: 'Playa Tamales', description: 'Playa aislada y silenciosa, perfecta para ver atardeceres.' },
-      { name: 'Playa Carate', description: 'Amplia, salvaje y punto de acceso al Parque Nacional Corcovado.' },
-      { name: 'Playa Carbonera', description: 'Tranquila y poco visitada, ideal para caminatas largas.' },
-      { name: 'Playa Río Oro', description: 'Playa extensa junto al río, excelente para avistamiento de fauna.' },
-      { name: 'Playa Piro', description: 'Aislada y rodeada de selva, perfecta para desconectar.' },
-      { name: 'Playa Pejeperro', description: 'Con olas fuertes y paisaje virgen, recomendada para exploradores.' },
-      { name: 'Playa Puntarenitas', description: 'Pequeña y acogedora, con aguas calmadas dentro del Golfo Dulce.' },
-      { name: 'Playa Sándalo', description: 'Playa aislada al sur de la península, ideal para quienes buscan naturaleza virgen.' },
-      { name: 'Playa Blanca (Golfo Dulce)', description: 'Aguas mansas y arena clara, excelente para bañarse.' },
-      { name: 'Playa San Josecito', description: 'Muy apreciada por snorkel, aguas claras y arrecifes cercanos.' },
-      { name: 'Playa Cocalito', description: 'Playa remota con arena oscura y un ambiente selvático.' },
-      { name: 'Playa Caletas', description: 'Aislada, con oleaje suave y buenas zonas sombreadas.' },
-      { name: 'Playa Rincón', description: 'Especial para kayak, pesca y ver delfines en el Golfo Dulce.' },
-      { name: 'Playa Mogos', description: 'Cálida y tranquila, rodeada de manglares y naturaleza.' },
-      { name: 'Playa Zancudo', description: 'Larguísima y plana, perfecta para caminar kilómetros (cercana).' },
-      { name: 'Playa Pavones', description: 'Famosa por tener una de las olas izquierdas más largas del mundo.' },
+      { name: 'Playa Preciosa (Platanares)', description: 'Amplia, tranquila, perfecta para caminatas y avistamiento de aves.', lat: 8.5167, lng: -83.3000 },
+      { name: 'Playa Pan Dulce', description: 'Famosa por su oleaje suave y apto para surfistas principiantes.', lat: 8.4667, lng: -83.2833 },
+      { name: 'Playa Matapalo (Cabo Matapalo)', description: 'Playa salvaje rodeada de selva, excelente para naturaleza y surf.', lat: 8.3950, lng: -83.2700 },
+      { name: 'Playa Sombrero', description: 'Popular para surf y para pasar el día en un ambiente natural.', lat: 8.4200, lng: -83.2750 },
+      { name: 'Playa Tamales', description: 'Playa aislada y silenciosa, perfecta para ver atardeceres.', lat: 8.4500, lng: -83.2800 },
+      { name: 'Playa Carate', description: 'Amplia, salvaje y punto de acceso al Parque Nacional Corcovado.', lat: 8.4217, lng: -83.4467 },
+      { name: 'Playa Carbonera', description: 'Tranquila y poco visitada, ideal para caminatas largas.', lat: 8.4300, lng: -83.4300 },
+      { name: 'Playa Río Oro', description: 'Playa extensa junto al río, excelente para avistamiento de fauna.', lat: 8.4100, lng: -83.4200 },
+      { name: 'Playa Piro', description: 'Aislada y rodeada de selva, perfecta para desconectar.', lat: 8.3800, lng: -83.4100 },
+      { name: 'Playa Pejeperro', description: 'Con olas fuertes y paisaje virgen, recomendada para exploradores.', lat: 8.3600, lng: -83.4000 },
+      { name: 'Playa Puntarenitas', description: 'Pequeña y acogedora, con aguas calmadas dentro del Golfo Dulce.', lat: 8.5400, lng: -83.3100 },
+      { name: 'Playa Sándalo', description: 'Playa aislada al sur de la península, ideal para quienes buscan naturaleza virgen.', lat: 8.3400, lng: -83.3800 },
+      { name: 'Playa Blanca (Golfo Dulce)', description: 'Aguas mansas y arena clara, excelente para bañarse.', lat: 8.6100, lng: -83.3300 },
+      { name: 'Playa San Josecito', description: 'Muy apreciada por snorkel, aguas claras y arrecifes cercanos.', lat: 8.6000, lng: -83.3400 },
+      { name: 'Playa Cocalito', description: 'Playa remota con arena oscura y un ambiente selvático.', lat: 8.5800, lng: -83.3500 },
+      { name: 'Playa Caletas', description: 'Aislada, con oleaje suave y buenas zonas sombreadas.', lat: 8.5700, lng: -83.3600 },
+      { name: 'Playa Rincón', description: 'Especial para kayak, pesca y ver delfines en el Golfo Dulce.', lat: 8.5600, lng: -83.3400 },
+      { name: 'Playa Mogos', description: 'Cálida y tranquila, rodeada de manglares y naturaleza.', lat: 8.5300, lng: -83.3200 },
+      { name: 'Playa Zancudo', description: 'Larguísima y plana, perfecta para caminar kilómetros (cercana).', lat: 8.3800, lng: -83.1400 },
+      { name: 'Playa Pavones', description: 'Famosa por tener una de las olas izquierdas más largas del mundo.', lat: 8.2667, lng: -83.1333 },
     ],
   },
   {
     category: 'Parque Nacional Corcovado',
     icon: '🌳',
     places: [
-      { name: 'Estación Sirena', description: 'Corazón del parque, con la mayor concentración de fauna.' },
-      { name: 'Estación La Leona', description: 'Entrada popular para caminatas por playa y selva.' },
-      { name: 'Estación San Pedrillo', description: 'Entrada norte del parque, famosa por cascadas y senderos.' },
-      { name: 'Estación Los Patos', description: 'Ruta más selvática del parque, rodeada de bosque primario.' },
-      { name: 'Sendero a Corcovado (Punta de Lanza)', description: 'Punto de partida hacia la selva del Parque Nacional Corcovado.' },
+      { name: 'Estación Sirena', description: 'Corazón del parque, con la mayor concentración de fauna.', lat: 8.4783, lng: -83.6167 },
+      { name: 'Estación La Leona', description: 'Entrada popular para caminatas por playa y selva.', lat: 8.4300, lng: -83.4467 },
+      { name: 'Estación San Pedrillo', description: 'Entrada norte del parque, famosa por cascadas y senderos.', lat: 8.6217, lng: -83.7583 },
+      { name: 'Estación Los Patos', description: 'Ruta más selvática del parque, rodeada de bosque primario.', lat: 8.5300, lng: -83.5500 },
+      { name: 'Sendero a Corcovado (Punta de Lanza)', description: 'Punto de partida hacia la selva del Parque Nacional Corcovado.', lat: 8.4500, lng: -83.4800 },
     ],
   },
   {
     category: 'Áreas Marinas y Manglares',
     icon: '🐬',
     places: [
-      { name: 'Golfo Dulce', description: 'Área marina calmada donde se observan delfines, aves y fauna marina.' },
-      { name: 'Manglares de Puerto Jiménez', description: 'Ecosistema ideal para tours de kayak y observación de aves.' },
-      { name: 'Estuario Cañaza', description: 'Zona de manglares perfecta para kayak y observación de vida marina y aves.' },
+      { name: 'Golfo Dulce', description: 'Área marina calmada donde se observan delfines, aves y fauna marina.', lat: 8.5500, lng: -83.3300 },
+      { name: 'Manglares de Puerto Jiménez', description: 'Ecosistema ideal para tours de kayak y observación de aves.', lat: 8.5334, lng: -83.3187 },
+      { name: 'Estuario Cañaza', description: 'Zona de manglares perfecta para kayak y observación de vida marina y aves.', lat: 8.5200, lng: -83.3000 },
     ],
   },
   {

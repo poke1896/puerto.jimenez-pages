@@ -18,7 +18,8 @@ export const translations = {
     footer: {
       title: 'Puerto Jiménez',
       subtitle: 'Corcovado • Golfo Dulce • Cultura local',
-      rights: 'Hecho con 💚 desde la Península de Osa'
+      rights: 'Hecho con 💚 desde la Península de Osa',
+      developedBy: 'programado por'
     },
 
     // Home Page
@@ -281,7 +282,8 @@ export const translations = {
     footer: {
       title: 'Puerto Jiménez',
       subtitle: 'Corcovado • Golfo Dulce • Local Culture',
-      rights: 'Made with 💚 from the Osa Peninsula'
+      rights: 'Made with 💚 from the Osa Peninsula',
+      developedBy: 'developed by'
     },
 
     // Home Page

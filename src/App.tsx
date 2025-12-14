@@ -117,7 +117,20 @@ function App() {
               <span className="pill bg-white/70 text-emerald-800 border-emerald-200">Pura Vida 🤙</span>
             </div>
           </div>
-          <div className="mt-4 text-xs text-gray-500">{t.footer.rights}</div>
+          <div className="mt-4 text-xs text-gray-500">
+            {t.footer.rights}
+          </div>
+          <div className="mt-1 text-xs font-semibold text-emerald-700">
+            {t.footer.developedBy}{' '}
+            <a 
+              href="https://pokedev-ops.pro" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-emerald-600 hover:text-emerald-800 underline transition-colors"
+            >
+              Pokedev-ops
+            </a>
+          </div>
         </footer>
       </div>
     </div>

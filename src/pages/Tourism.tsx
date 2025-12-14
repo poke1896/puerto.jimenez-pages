@@ -61,15 +61,34 @@ function Tourism() {
               <div className={`overflow-hidden transition-all duration-500 ${isOpen ? 'max-h-[5000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                 <div className="px-4 pb-4 md:px-5 md:pb-5 pt-2">
                   <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-2">
-                    {category.places.map((place) => (
-                      <article
-                        key={place.name}
-                        className="soft-card p-4 md:p-5 border-l-4 border-emerald-300/50 hover:scale-105 hover:shadow-lg transition-all duration-300">
-                      
-                        <h3 className="font-semibold text-slate-950">{place.name}</h3>
-                        <p className="mt-2 text-sm text-slate-600 leading-relaxed">{place.description}</p>
-                      </article>
-                    ))}
+                    {category.places.map((place) => {
+                      const baseContext = 'Puerto Jiménez, Puntarenas, Costa Rica'
+                      const nameQuery = encodeURIComponent(`${place.name} ${baseContext}`)
+                      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${nameQuery}`
+
+                      const Component = 'a'
+                      const linkProps = {
+                        href: mapsUrl,
+                        target: '_blank',
+                        rel: 'noopener noreferrer'
+                      }
+
+                      return (
+                        <Component
+                          key={place.name}
+                          {...linkProps}
+                          className="soft-card p-4 md:p-5 border-l-4 border-emerald-300/50 hover:scale-105 hover:shadow-lg transition-all duration-300 group cursor-pointer">
+                        
+                          <div className="flex items-start justify-between gap-2">
+                            <h3 className="font-semibold text-slate-950 group-hover:text-emerald-600 transition-colors">{place.name}</h3>
+                            <span className="text-emerald-600 text-lg flex-shrink-0 group-hover:scale-110 transition-transform" title={language === 'es' ? 'Ver en Google Maps' : 'View on Google Maps'}>
+                              📍
+                            </span>
+                          </div>
+                          <p className="mt-2 text-sm text-slate-600 leading-relaxed">{place.description}</p>
+                        </Component>
+                      )
+                    })}
                   </div>
                 </div>
               </div>
