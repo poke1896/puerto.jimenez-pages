@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap');
 
 @import "tailwindcss";
 
@@ -12,13 +12,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --color-bg: #fdfbf7;
-  --color-primary: #059669;
-  --color-primary-dark: #047857;
-  --color-secondary: #0891b2;
-  --color-accent: #f97316;
-  --color-accent-light: #fed7aa;
-  color: #1f2937;
+  --color-bg: #050816;
+  --color-surface: #0b1220;
+  --color-primary: #e2e8f0;
+  --color-primary-soft: #94a3b8;
+  --color-secondary: #64748b;
+  --color-accent: #b8a38a;
+  --color-accent-light: #2b3140;
+  color: #e5e7eb;
   background-color: var(--color-bg);
 }
 
@@ -29,8 +30,12 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(135deg, #fdfbf7 0%, #f0fdf4 100%);
-  color: #1f2937;
+  background:
+    radial-gradient(circle at top left, rgba(88, 28, 135, 0.18), transparent 30%),
+    radial-gradient(circle at top right, rgba(15, 23, 42, 0.62), transparent 28%),
+    radial-gradient(circle at bottom center, rgba(30, 41, 59, 0.9), transparent 40%),
+    linear-gradient(180deg, #050816 0%, #0b1220 100%);
+  color: #e5e7eb;
 }
 
 a {
@@ -39,8 +44,8 @@ a {
 }
 
 ::selection {
-  background: rgba(5, 150, 105, 0.18);
-  color: #0f172a;
+  background: rgba(148, 163, 184, 0.24);
+  color: #f8fafc;
 }
 
 @layer utilities {

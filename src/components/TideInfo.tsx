@@ -22,14 +22,58 @@ const MAREA_ENDPOINT = import.meta.env.VITE_MAREA_URL || 'https://api.marea.ooo/
 
 type TideProvider = 'marea' | 'stormglass'
 
+interface TideCachePayload {
+  data: TideExtreme[]
+  provider: TideProvider
+  cachedAt: number
+}
+
+const TIDE_CACHE_KEY = 'pj_tides_cache_v1'
+const TIDE_CACHE_TTL_MS = 24 * 60 * 60 * 1000
+
 export function TideInfo() {
   const { language } = useI18n()
   const [tideData, setTideData] = useState<TideExtreme[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [provider, setProvider] = useState<TideProvider | null>(null)
+  const [usingStaleCache, setUsingStaleCache] = useState(false)
 
   useEffect(() => {
+    const readCache = (allowExpired = false): TideCachePayload | null => {
+      try {
+        const raw = localStorage.getItem(TIDE_CACHE_KEY)
+        if (!raw) return null
+
+        const parsed = JSON.parse(raw) as TideCachePayload
+        if (!Array.isArray(parsed.data) || !parsed.provider || typeof parsed.cachedAt !== 'number') {
+          return null
+        }
+
+        const age = Date.now() - parsed.cachedAt
+        if (!allowExpired && age > TIDE_CACHE_TTL_MS) {
+          return null
+        }
+
+        return parsed
+      } catch {
+        return null
+      }
+    }
+
+    const writeCache = (data: TideExtreme[], dataProvider: TideProvider) => {
+      try {
+        const payload: TideCachePayload = {
+          data,
+          provider: dataProvider,
+          cachedAt: Date.now()
+        }
+        localStorage.setItem(TIDE_CACHE_KEY, JSON.stringify(payload))
+      } catch {
+        // Ignore storage errors (private mode, quota, etc.)
+      }
+    }
+
     const nowTs = Math.floor(Date.now() / 1000)
     const startDay = Math.floor(new Date().setHours(0, 0, 0, 0) / 1000)
     const endDay = Math.floor(new Date().setHours(23, 59, 59, 999) / 1000)
@@ -112,12 +156,25 @@ export function TideInfo() {
     const fetchTideData = async () => {
       setLoading(true)
       setError(null)
+      setUsingStaleCache(false)
+
+      const cachedData = readCache()
+      if (cachedData) {
+        setTideData(cachedData.data)
+        setProvider(cachedData.provider)
+        return
+      }
+
+      const staleCachedData = readCache(true)
+
       let lastError = ''
       for (const candidate of providers.filter((p) => p.enabled)) {
         try {
           const data = await candidate.fetcher()
           setTideData(data)
           setProvider(candidate.name)
+          setUsingStaleCache(false)
+          writeCache(data, candidate.name)
           return
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err)
@@ -125,7 +182,16 @@ export function TideInfo() {
           console.error(`Error con proveedor ${candidate.name}:`, err)
         }
       }
-      setError(lastError || 'No hay datos disponibles')
+
+      if (staleCachedData) {
+        setTideData(staleCachedData.data)
+        setProvider(staleCachedData.provider)
+        setUsingStaleCache(true)
+        return
+      }
+
+      console.error('No se pudieron actualizar mareas:', lastError || 'No hay datos disponibles')
+      setError('FETCH_FAILED')
     }
 
     fetchTideData().finally(() => setLoading(false))
@@ -176,7 +242,11 @@ export function TideInfo() {
               {language === 'es' ? 'Mareas' : 'Tides'}
             </h2>
             <p className="text-sm text-red-600">
-              {error}
+              {error === 'FETCH_FAILED'
+                ? (language === 'es'
+                    ? 'No se pudo actualizar mareas en este momento.'
+                    : 'Could not update tides right now.')
+                : error}
             </p>
           </div>
         </div>
@@ -197,6 +267,13 @@ export function TideInfo() {
           <p className="text-sm md:text-base text-gray-600">
             {language === 'es' ? 'Información actualizada' : 'Updated information'}
           </p>
+          {usingStaleCache ? (
+            <p className="text-xs font-medium text-amber-700">
+              {language === 'es'
+                ? 'Mostrando datos guardados por falta de conexión con el proveedor.'
+                : 'Showing cached data because the provider is unavailable.'}
+            </p>
+          ) : null}
         </div>
       </div>
 

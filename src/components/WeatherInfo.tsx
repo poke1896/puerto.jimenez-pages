@@ -8,6 +8,12 @@ interface WeatherData {
     weather_code: number
     wind_speed_10m: number
   }
+  daily: {
+    uv_index_max: number[]
+    precipitation_probability_max: number[]
+    sunrise: string[]
+    sunset: string[]
+  }
 }
 
 // Coordenadas de Puerto Jiménez
@@ -51,6 +57,44 @@ const getWeatherDescription = (code: number, language: string) => {
   return language === 'es' ? desc.es : desc.en
 }
 
+const formatHour = (isoDate: string, language: string) => {
+  const date = new Date(isoDate)
+  return date.toLocaleTimeString(language === 'es' ? 'es-CR' : 'en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: language !== 'es'
+  })
+}
+
+const getDailySuggestion = (
+  weatherCode: number,
+  uvIndex: number,
+  rainProbability: number,
+  language: string
+) => {
+  if (rainProbability >= 65) {
+    return language === 'es'
+      ? 'Plan recomendado: actividades bajo techo o tours cortos con capa impermeable.'
+      : 'Recommended plan: indoor activities or short tours with a rain jacket.'
+  }
+
+  if (uvIndex >= 8) {
+    return language === 'es'
+      ? 'Plan recomendado: tours de selva temprano o al atardecer, evita sol fuerte al mediodia.'
+      : 'Recommended plan: rainforest tours early or at sunset, avoid strong midday sun.'
+  }
+
+  if (weatherCode <= 3) {
+    return language === 'es'
+      ? 'Plan recomendado: ideal para playa, kayak o caminata larga hoy.'
+      : 'Recommended plan: ideal day for beach, kayaking, or a long hike.'
+  }
+
+  return language === 'es'
+    ? 'Plan recomendado: combina actividades de naturaleza con pausas en sombra.'
+    : 'Recommended plan: combine nature activities with shaded breaks.'
+}
+
 export function WeatherInfo() {
   const { language } = useI18n()
   const [weather, setWeather] = useState<WeatherData | null>(null)
@@ -59,7 +103,7 @@ export function WeatherInfo() {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${PUERTO_JIMENEZ_LAT}&longitude=${PUERTO_JIMENEZ_LON}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&timezone=America/Costa_Rica`
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${PUERTO_JIMENEZ_LAT}&longitude=${PUERTO_JIMENEZ_LON}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&daily=uv_index_max,precipitation_probability_max,sunrise,sunset&forecast_days=1&timezone=America/Costa_Rica`
         
         const response = await fetch(url)
         const data = await response.json()
@@ -95,15 +139,26 @@ export function WeatherInfo() {
     )
   }
 
+  const uvToday = Math.round(weather.daily.uv_index_max[0] ?? 0)
+  const rainProbToday = Math.round(weather.daily.precipitation_probability_max[0] ?? 0)
+  const sunrise = weather.daily.sunrise[0] ? formatHour(weather.daily.sunrise[0], language) : '--:--'
+  const sunset = weather.daily.sunset[0] ? formatHour(weather.daily.sunset[0], language) : '--:--'
+  const suggestion = getDailySuggestion(
+    weather.current.weather_code,
+    uvToday,
+    rainProbToday,
+    language
+  )
+
   return (
-      <div className="soft-card p-4 md:p-6 bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 animate-fade-in-up hover:scale-105 transition-transform duration-300">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 md:gap-3">
-            <div className="text-3xl md:text-4xl">
+    <div className="soft-card animate-fade-in-up border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-4 md:p-6">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="flex items-center gap-2 md:gap-3">
+          <div className="text-3xl md:text-4xl">
             {getWeatherIcon(weather.current.weather_code)}
           </div>
           <div>
-              <p className="text-xs md:text-sm text-gray-500 font-semibold">
+            <p className="text-xs font-semibold text-gray-500 md:text-sm">
               {language === 'es' ? 'Clima Actual' : 'Current Weather'}
             </p>
             <p className="text-sm font-medium text-gray-700">
@@ -111,33 +166,63 @@ export function WeatherInfo() {
             </p>
           </div>
         </div>
-        
-          <div className="flex items-center gap-3 md:gap-4">
+
+        <div className="grid grid-cols-3 gap-3 md:gap-4">
           <div className="text-center">
-              <p className="text-2xl md:text-3xl font-bold text-orange-600">
+            <p className="text-2xl font-bold text-orange-600 md:text-3xl">
               {Math.round(weather.current.temperature_2m)}°
             </p>
-            <p className="text-xs text-gray-500">
-              {language === 'es' ? 'Temp' : 'Temp'}
-            </p>
+            <p className="text-xs text-gray-500">{language === 'es' ? 'Temp' : 'Temp'}</p>
           </div>
-          
-            <div className="text-center border-l border-gray-300 pl-3 md:pl-4">
-              <p className="text-base md:text-lg font-semibold text-blue-600">
+
+          <div className="border-l border-gray-300 pl-3 text-center md:pl-4">
+            <p className="text-base font-semibold text-blue-600 md:text-lg">
               {weather.current.relative_humidity_2m}%
             </p>
             <p className="text-xs text-gray-500">
               {language === 'es' ? 'Humedad' : 'Humidity'}
             </p>
           </div>
-          
-            <div className="text-center border-l border-gray-300 pl-3 md:pl-4">
-              <p className="text-base md:text-lg font-semibold text-teal-600">
+
+          <div className="border-l border-gray-300 pl-3 text-center md:pl-4">
+            <p className="text-base font-semibold text-teal-600 md:text-lg">
               {Math.round(weather.current.wind_speed_10m)}
             </p>
             <p className="text-xs text-gray-500">km/h</p>
           </div>
         </div>
+      </div>
+
+      <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
+          <div className="rounded-xl border border-amber-200 bg-white/60 p-3 text-center">
+            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">UV max</p>
+            <p className="mt-1 text-base font-bold text-amber-700">{uvToday}</p>
+          </div>
+          <div className="rounded-xl border border-amber-200 bg-white/60 p-3 text-center">
+            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+              {language === 'es' ? 'Lluvia' : 'Rain chance'}
+            </p>
+            <p className="mt-1 text-base font-bold text-sky-700">{rainProbToday}%</p>
+          </div>
+          <div className="rounded-xl border border-amber-200 bg-white/60 p-3 text-center">
+            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+              {language === 'es' ? 'Amanecer' : 'Sunrise'}
+            </p>
+            <p className="mt-1 text-base font-bold text-emerald-700">{sunrise}</p>
+          </div>
+          <div className="rounded-xl border border-amber-200 bg-white/60 p-3 text-center">
+            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+              {language === 'es' ? 'Atardecer' : 'Sunset'}
+            </p>
+            <p className="mt-1 text-base font-bold text-violet-700">{sunset}</p>
+          </div>
+        </div>
+
+      <div className="mt-3 rounded-xl border border-amber-200 bg-white/70 px-3 py-2">
+        <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          {language === 'es' ? 'Tip para hoy' : 'Today tip'}
+        </p>
+        <p className="mt-1 text-sm text-gray-700">{suggestion}</p>
       </div>
     </div>
   )

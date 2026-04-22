@@ -6,57 +6,77 @@ function Services() {
   const serviceSpots = getTranslatedServiceSpots(language)
 
   return (
-    <div className="space-y-10">
-      <header className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-br from-orange-500 via-amber-500 to-emerald-500 p-6 md:p-8 lg:p-10 text-white shadow-2xl animate-fade-in-up">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-25"></div>
-        <div className="relative z-10 space-y-2 md:space-y-3">
-          <div className="text-3xl md:text-4xl">🏪🍽️🧭</div>
-          <p className="pill inline-block bg-white/20 border border-white/40 text-white">{t.services.header.badge}</p>
-          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-black drop-shadow-lg">{t.services.header.title}</h1>
-          <p className="max-w-3xl text-base md:text-lg text-amber-50">{t.services.header.description}</p>
-          <div className="flex flex-wrap gap-3 text-sm font-semibold">
-            <span className="px-3 py-1 rounded-full bg-white/20 border border-white/30">{t.services.header.tags.restaurants}</span>
-            <span className="px-3 py-1 rounded-full bg-white/20 border border-white/30">{t.services.header.tags.hotels}</span>
-            <span className="px-3 py-1 rounded-full bg-white/20 border border-white/30">{t.services.header.tags.health}</span>
+    <div className="space-y-10 text-slate-100">
+      <header className="hero-shell rounded-3xl p-6 md:p-8 lg:p-10 animate-fade-in-up">
+        <div className="relative z-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+          <div className="space-y-3">
+            <p className="eyebrow">{t.services.ui.eyebrow}</p>
+            <h1 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+              {t.services.header.title}
+            </h1>
+            <p className="max-w-3xl text-base leading-7 text-slate-300 md:text-lg">
+              {t.services.header.description}
+            </p>
           </div>
+          <div className="grid gap-3 rounded-3xl border border-white/10 bg-white/6 p-4 backdrop-blur-sm md:grid-cols-3">
+            <div className="metric p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">{t.services.ui.badgeLabel}</p>
+              <p className="mt-2 font-semibold text-white">{t.services.header.badge}</p>
+            </div>
+            <div className="metric p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">{t.services.ui.focusLabel}</p>
+              <p className="mt-2 font-semibold text-white">{t.services.ui.focusValue}</p>
+            </div>
+            <div className="metric p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">{t.services.ui.toneLabel}</p>
+              <p className="mt-2 font-semibold text-white">{t.services.ui.toneValue}</p>
+            </div>
+          </div>
+        </div>
+        <div className="relative z-10 mt-5 flex flex-wrap gap-3 text-sm font-semibold text-slate-200">
+          <span className="pill border-white/15 bg-white/5 text-slate-100">{t.services.header.tags.restaurants}</span>
+          <span className="pill border-white/15 bg-white/5 text-slate-100">{t.services.header.tags.hotels}</span>
+          <span className="pill border-white/15 bg-white/5 text-slate-100">{t.services.header.tags.health}</span>
         </div>
       </header>
 
-      <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {serviceSpots.map((category, index) => (
           <article
             key={category.category}
-            className="soft-card flex h-full flex-col gap-2 md:gap-3 p-4 md:p-6 border-l-4 border-orange-400/80 animate-scale-in hover:scale-105 hover:shadow-xl transition-all duration-300"
-            style={{animationDelay: `${index * 100}ms`}}
+            className="soft-card flex h-full flex-col gap-3 border border-white/10 p-4 md:p-6 animate-scale-in transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:bg-white/5"
+            style={{ animationDelay: `${index * 100}ms` }}
           >
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl text-white text-2xl shadow-lg">
-                {category.icon}
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-900 text-xs font-bold tracking-[0.2em] text-white shadow-lg shadow-slate-900/15">
+                {String(index + 1).padStart(2, '0')}
               </div>
               <div>
-                <h3 className="font-display text-xl text-slate-950">{category.category}</h3>
-                <span className="text-xs font-semibold text-orange-600">{category.items.length} {t.services.options}</span>
+                <h3 className="font-display text-xl font-bold text-white">{category.category}</h3>
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                  {category.items.length} {t.services.options}
+                </span>
               </div>
             </div>
-            <ul className="space-y-2 text-sm text-slate-700">
+            <ul className="space-y-2 text-sm text-slate-300">
               {category.items.map((item) => {
-                const baseContext = 'Puerto Jiménez, Puntarenas, Costa Rica'
+                const baseContext = 'Puerto Jimenez, Puntarenas, Costa Rica'
                 const itemName = typeof item === 'string' ? item : item.name
                 const nameQuery = encodeURIComponent(`${itemName} ${baseContext}`)
                 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${nameQuery}`
 
                 return (
-                  <li key={itemName} className="flex gap-2 group">
-                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-orange-400" />
+                  <li key={itemName} className="group flex gap-2">
+                    <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-slate-400" />
                     <a
                       href={mapsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 hover:text-orange-600 transition-colors cursor-pointer"
+                      className="flex items-center gap-2 transition-colors hover:text-white"
                     >
                       <span>{itemName}</span>
-                      <span className="text-orange-500 opacity-0 group-hover:opacity-100 transition-opacity" title={language === 'es' ? 'Ver en Google Maps' : 'View on Google Maps'}>
-                        📍
+                      <span className="text-xs uppercase tracking-[0.18em] text-slate-400 opacity-0 transition-opacity group-hover:opacity-100">
+                        {t.services.ui.mapLabel}
                       </span>
                     </a>
                   </li>

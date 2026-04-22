@@ -8,85 +8,106 @@ function Tourism() {
   const [openCategories, setOpenCategories] = useState<Set<string>>(new Set())
 
   const toggleCategory = (categoryName: string) => {
-    const newOpenCategories = new Set(openCategories)
-    if (newOpenCategories.has(categoryName)) {
-      newOpenCategories.delete(categoryName)
+    const next = new Set(openCategories)
+    if (next.has(categoryName)) {
+      next.delete(categoryName)
     } else {
-      newOpenCategories.add(categoryName)
+      next.add(categoryName)
     }
-    setOpenCategories(newOpenCategories)
+    setOpenCategories(next)
   }
 
   return (
-    <div className="space-y-10">
-      <header className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-br from-emerald-500 via-cyan-500 to-blue-500 p-6 md:p-8 lg:p-10 text-white shadow-2xl animate-fade-in-up">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-30"></div>
-        <div className="relative z-10 space-y-2 md:space-y-3">
-          <div className="text-3xl md:text-4xl">🏝️🦥🌿</div>
-          <p className="pill inline-block bg-white/20 border border-white/40 text-xs font-semibold tracking-wide text-white">{t.tourism.header.badge}</p>
-          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-black drop-shadow-lg">{t.tourism.header.title}</h1>
-          <p className="max-w-3xl text-base md:text-lg text-emerald-50">{t.tourism.header.description}</p>
-          <div className="flex flex-wrap gap-3 text-sm font-semibold">
-            <span className="px-3 py-1 rounded-full bg-white/20 border border-white/30">{t.tourism.header.tags.beaches}</span>
-            <span className="px-3 py-1 rounded-full bg-white/20 border border-white/30">{t.tourism.header.tags.corcovado}</span>
-            <span className="px-3 py-1 rounded-full bg-white/20 border border-white/30">{t.tourism.header.tags.mangroves}</span>
+    <div className="space-y-10 text-slate-100">
+      <header className="hero-shell rounded-3xl p-6 md:p-8 lg:p-10 animate-fade-in-up">
+        <div className="relative z-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+          <div className="space-y-3">
+            <p className="eyebrow">{t.tourism.ui.eyebrow}</p>
+            <h1 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+              {t.tourism.header.title}
+            </h1>
+            <p className="max-w-3xl text-base leading-7 text-slate-300 md:text-lg">
+              {t.tourism.header.description}
+            </p>
           </div>
+          <div className="grid gap-3 rounded-3xl border border-white/10 bg-white/6 p-4 backdrop-blur-sm md:grid-cols-3">
+            <div className="metric p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">{t.tourism.ui.badgeLabel}</p>
+              <p className="mt-2 font-semibold text-white">{t.tourism.header.badge}</p>
+            </div>
+            <div className="metric p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">{t.tourism.ui.focusLabel}</p>
+              <p className="mt-2 font-semibold text-white">{t.tourism.ui.focusValue}</p>
+            </div>
+            <div className="metric p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">{t.tourism.ui.toneLabel}</p>
+              <p className="mt-2 font-semibold text-white">{t.tourism.ui.toneValue}</p>
+            </div>
+          </div>
+        </div>
+        <div className="relative z-10 mt-5 flex flex-wrap gap-3 text-sm font-semibold text-slate-200">
+          <span className="pill border-white/15 bg-white/5 text-slate-100">{t.tourism.header.tags.beaches}</span>
+          <span className="pill border-white/15 bg-white/5 text-slate-100">{t.tourism.header.tags.corcovado}</span>
+          <span className="pill border-white/15 bg-white/5 text-slate-100">{t.tourism.header.tags.mangroves}</span>
         </div>
       </header>
 
       <div className="space-y-4">
         {touristSpots.map((category, index) => {
           const isOpen = openCategories.has(category.category)
-          
+
           return (
-            <section key={category.category} className="soft-card border-l-4 border-emerald-400/70 animate-fade-in-up" style={{animationDelay: `${index * 100}ms`}}>
+            <section
+              key={category.category}
+              className="soft-card border border-white/10 animate-fade-in-up"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
               <button
                 onClick={() => toggleCategory(category.category)}
-                className="w-full p-4 md:p-5 flex items-center justify-between gap-3 hover:bg-emerald-50/50 transition-colors rounded-lg"
+                className="flex w-full items-center justify-between gap-4 rounded-3xl px-4 py-4 text-left transition-colors hover:bg-white/5 md:px-5"
               >
-                <div className="flex items-center gap-2 md:gap-3">
-                  <div className="p-2 md:p-3 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 text-white text-xl md:text-2xl shadow-lg">
-                    {category.icon}
+                <div className="flex items-center gap-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-900 text-xs font-bold tracking-[0.2em] text-white shadow-lg shadow-slate-900/15">
+                    {String(index + 1).padStart(2, '0')}
                   </div>
-                  <div className="text-left">
-                    <h2 className="font-display text-xl md:text-2xl lg:text-3xl text-slate-950">{category.category}</h2>
-                    <span className="text-xs md:text-sm text-emerald-700 font-semibold">{category.places.length} {t.tourism.sites}</span>
+                  <div>
+                    <h2 className="font-display text-xl font-bold text-white md:text-2xl">{category.category}</h2>
+                    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                      {category.places.length} {t.tourism.sites}
+                    </span>
                   </div>
                 </div>
-                <div className={`text-emerald-600 text-2xl transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+                <div className={`text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
                   ▼
                 </div>
               </button>
-              
+
               <div className={`overflow-hidden transition-all duration-500 ${isOpen ? 'max-h-[5000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                <div className="px-4 pb-4 md:px-5 md:pb-5 pt-2">
-                  <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-2">
+                <div className="px-4 pb-4 pt-2 md:px-5 md:pb-5">
+                  <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4">
                     {category.places.map((place) => {
-                      const baseContext = 'Puerto Jiménez, Puntarenas, Costa Rica'
+                      const baseContext = 'Puerto Jimenez, Puntarenas, Costa Rica'
                       const nameQuery = encodeURIComponent(`${place.name} ${baseContext}`)
                       const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${nameQuery}`
 
-                      const Component = 'a'
-                      const linkProps = {
-                        href: mapsUrl,
-                        target: '_blank',
-                        rel: 'noopener noreferrer'
-                      }
-
                       return (
-                        <Component
+                        <a
                           key={place.name}
-                          {...linkProps}
-                          className="soft-card p-4 md:p-5 border-l-4 border-emerald-300/50 hover:scale-105 hover:shadow-lg transition-all duration-300 group cursor-pointer">
-                        
-                          <div className="flex items-start justify-between gap-2">
-                            <h3 className="font-semibold text-slate-950 group-hover:text-emerald-600 transition-colors">{place.name}</h3>
-                            <span className="text-emerald-600 text-lg flex-shrink-0 group-hover:scale-110 transition-transform" title={language === 'es' ? 'Ver en Google Maps' : 'View on Google Maps'}>
-                              📍
+                          href={mapsUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="soft-card group cursor-pointer border border-white/10 p-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:bg-white/5"
+                        >
+                          <div className="flex items-start justify-between gap-3">
+                            <h3 className="font-semibold text-white transition-colors group-hover:text-slate-200">
+                              {place.name}
+                            </h3>
+                            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                              {t.tourism.ui.mapLabel}
                             </span>
                           </div>
-                          <p className="mt-2 text-sm text-slate-600 leading-relaxed">{place.description}</p>
-                        </Component>
+                          <p className="mt-2 text-sm leading-relaxed text-slate-300">{place.description}</p>
+                        </a>
                       )
                     })}
                   </div>

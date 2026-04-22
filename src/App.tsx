@@ -9,10 +9,10 @@ function App() {
 
   const navClass = ({ isActive }: { isActive: boolean }) =>
     [
-      'px-3 md:px-4 py-1.5 md:py-2 rounded-full font-semibold transition-all',
+      'rounded-full px-3.5 py-2 text-sm font-semibold transition-all duration-200',
       isActive
-        ? 'bg-gradient-to-r from-emerald-600 to-cyan-600 text-white shadow-lg'
-        : 'text-gray-700 hover:bg-emerald-50 hover:text-emerald-700'
+        ? 'bg-white text-slate-950 shadow-sm'
+        : 'text-slate-300 hover:bg-white/10 hover:text-white'
     ].join(' ')
 
   const toggleLanguage = () => {
@@ -29,33 +29,33 @@ function App() {
   }
 
   return (
-    <div className="app-shell text-slate-900">
+    <div className="app-shell text-slate-100">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 md:gap-12 px-4 md:px-6 py-6 md:py-10 lg:py-12">
-        <header className="sticky top-2 md:top-4 z-50 bg-white/95 backdrop-blur-md shadow-xl rounded-2xl md:rounded-full px-4 md:px-8 py-3 md:py-4 border-2 border-emerald-500/20 animate-fade-in">
+        <header className="sticky top-2 md:top-4 z-50 rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 shadow-lg shadow-black/20 backdrop-blur-xl md:rounded-full md:px-6 md:py-4 animate-fade-in">
           <div className="flex items-center justify-between w-full">
             <Link to="/" className="flex items-center gap-2" onClick={closeMenu}>
-              <span className="text-2xl md:text-3xl">🌴</span>
+              <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white text-xs font-bold tracking-[0.2em] text-slate-950">
+                PJ
+              </span>
               <div>
-                <span className="font-display text-lg md:text-xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">{t.header.title}</span>
-                <p className="text-xs text-emerald-700 font-semibold">{t.header.subtitle}</p>
+                <span className="font-display text-lg md:text-xl font-bold text-white">{t.header.title}</span>
+                <p className="text-xs font-medium tracking-wide text-slate-400">{t.header.subtitle}</p>
               </div>
             </Link>
             
-            {/* Botón hamburguesa - solo visible en móvil */}
             <button
               onClick={toggleMenu}
-              className="md:hidden p-2 rounded-lg hover:bg-emerald-50 transition-colors"
+              className="rounded-lg p-2 text-slate-300 transition-colors hover:bg-white/10 md:hidden"
               aria-label="Toggle menu"
             >
               <div className="w-6 h-5 flex flex-col justify-between">
-                <span className={`block h-0.5 bg-emerald-600 transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-                <span className={`block h-0.5 bg-emerald-600 transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-                <span className={`block h-0.5 bg-emerald-600 transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+                <span className={`block h-0.5 bg-slate-200 transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+                <span className={`block h-0.5 bg-slate-200 transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+                <span className={`block h-0.5 bg-slate-200 transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
               </div>
             </button>
 
-            {/* Navegación desktop - siempre visible en md+ */}
-            <nav className="hidden md:flex items-center gap-1.5 md:gap-2 text-xs md:text-sm font-semibold text-gray-700">
+            <nav className="hidden md:flex items-center gap-2 text-xs md:text-sm font-semibold text-slate-300">
               <NavLink to="/" className={navClass} end>
                 {t.header.nav.home}
               </NavLink>
@@ -71,7 +71,6 @@ function App() {
             </nav>
           </div>
 
-          {/* Navegación móvil - desplegable */}
           <nav className={`md:hidden overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-64 mt-4' : 'max-h-0'}`}>
             <div className="flex flex-col gap-2 py-2">
               <NavLink to="/" className={navClass} end onClick={closeMenu}>
@@ -92,41 +91,42 @@ function App() {
 
         <Outlet />
 
-        {/* Botón flotante de cambio de idioma */}
         <button
           onClick={toggleLanguage}
-          className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 p-3 md:p-4 rounded-full font-bold transition-all bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-2xl hover:from-blue-600 hover:to-purple-600 hover:scale-110 flex items-center gap-1.5 md:gap-2 animate-bounce-subtle animate-fade-in"
+          className="fixed bottom-4 right-4 z-50 flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-3 text-sm font-semibold text-white shadow-2xl shadow-black/20 transition-transform hover:scale-[1.03] md:bottom-8 md:right-8 animate-fade-in backdrop-blur-xl"
           title={language === 'es' ? 'Cambiar a inglés' : 'Switch to Spanish'}
         >
-          <span className="text-xl md:text-2xl">{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
-          <span className="text-base md:text-lg">{language === 'es' ? 'EN' : 'ES'}</span>
+          <span className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-300">Lang</span>
+          <span className="text-sm">{language === 'es' ? 'EN' : 'ES'}</span>
         </button>
 
-        <footer className="mt-6 md:mt-12 border-t-2 border-emerald-100 pt-6 md:pt-8 bg-gradient-to-br from-emerald-50/60 to-cyan-50/60 rounded-2xl md:rounded-3xl px-4 md:px-6 py-6 md:py-8 text-center md:text-left animate-fade-in-up">
+        <footer className="mt-6 rounded-3xl border border-white/10 bg-slate-950/70 px-4 py-6 text-center shadow-lg shadow-black/20 backdrop-blur md:mt-12 md:px-6 md:py-8 md:text-left animate-fade-in-up">
           <div className="flex flex-col gap-3 md:gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center gap-2 md:gap-3 justify-center md:justify-start">
-              <span className="text-2xl md:text-3xl">🦜</span>
+            <div className="flex items-center gap-3 justify-center md:justify-start">
+              <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white text-xs font-bold tracking-[0.2em] text-slate-950">
+                PJ
+              </span>
               <div>
-                <p className="font-display text-lg md:text-xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">{t.footer.title}</p>
-                <p className="text-xs md:text-sm font-semibold text-emerald-800">{t.footer.subtitle}</p>
+                <p className="font-display text-lg md:text-xl font-bold text-white">{t.footer.title}</p>
+                <p className="text-xs md:text-sm font-medium text-slate-400">{t.footer.subtitle}</p>
               </div>
             </div>
-            <div className="flex flex-wrap justify-center gap-3 text-sm text-gray-600">
-              <span className="pill bg-white/70 text-emerald-800 border-emerald-200">{language === 'es' ? 'Turismo responsable' : 'Responsible tourism'}</span>
-              <span className="pill bg-white/70 text-emerald-800 border-emerald-200">{language === 'es' ? 'Guías locales certificados' : 'Certified local guides'}</span>
-              <span className="pill bg-white/70 text-emerald-800 border-emerald-200">Pura Vida 🤙</span>
+            <div className="flex flex-wrap justify-center gap-3 text-sm text-slate-300">
+              <span className="pill bg-white/5 text-slate-100 border-white/10">{language === 'es' ? 'Turismo responsable' : 'Responsible tourism'}</span>
+              <span className="pill bg-white/5 text-slate-100 border-white/10">{language === 'es' ? 'Guías locales certificados' : 'Certified local guides'}</span>
+              <span className="pill bg-white/5 text-slate-100 border-white/10">Puerto Jimenez</span>
             </div>
           </div>
-          <div className="mt-4 text-xs text-gray-500">
+          <div className="mt-4 text-xs text-slate-400">
             {t.footer.rights}
           </div>
-          <div className="mt-1 text-xs font-semibold text-emerald-700">
+          <div className="mt-1 text-xs font-semibold text-slate-300">
             {t.footer.developedBy}{' '}
             <a 
               href="https://pokedev-ops.pro" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-emerald-600 hover:text-emerald-800 underline transition-colors"
+              className="text-white underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-white"
             >
               Pokedev-ops
             </a>

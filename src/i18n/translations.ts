@@ -33,8 +33,41 @@ export const translations = {
           ecotourism: '🌳 Ecoturismo'
         }
       },
+      tourOperators: {
+        eyebrow: 'Operadores locales',
+        title: 'Tour Operadores Recomendados',
+        subtitle: 'Estas opciones te ayudan a coordinar tours en Corcovado, transporte y logística de forma directa con equipos locales.',
+        visitCta: 'Visitar operador',
+        operators: {
+          jaguar: {
+            description: 'Especialistas en experiencias guiadas dentro y alrededor de Corcovado, con opciones de aventura para diferentes niveles.'
+          },
+          guia: {
+            description: 'Operador con enfoque en guías certificados y rutas personalizadas para explorar selva, playas y fauna.'
+          },
+          sirena: {
+            description: 'Alternativa ideal para pesca o tour de pesca en la zona, perfecta para quienes quieren una experiencia completa en una sola jornada.'
+          }
+        }
+      },
+      ui: {
+        destinationLabel: 'Destino',
+        destinationValue: 'Península de Osa, Costa Rica',
+        focusLabel: 'Enfoque',
+        focusValue: 'Naturaleza, logística y servicios locales',
+        styleLabel: 'Estilo',
+        styleValue: 'Serio, claro y usable',
+        howToGetHereEyebrow: 'Cómo llegar',
+        routeLabels: {
+          land: 'Ruta terrestre',
+          sea: 'Ruta marítima',
+          air: 'Ruta aérea'
+        },
+        locationTitle: 'Ubicación',
+        locationCity: 'Puerto Jiménez, Puntarenas, Costa Rica'
+      },
       howToGetHere: {
-        title: '🚌 Cómo llegar',
+        title: 'Cómo llegar',
         subtitle: 'Múltiples opciones para llegar a tu paraíso tropical',
         bus: {
           title: 'Autobús',
@@ -47,7 +80,7 @@ export const translations = {
           },
           pjToSj: {
             title: 'Puerto Jiménez → San José',
-            departure: 'Salida: 12:00 mediodía',
+            departure: 'Salida: 5:00 am',
             arrival: 'Llegada: ~19:00 (7 horas)',
             price: 'Precio: ₡8.500 – ₡9.000 (~$14-$16)',
             note: 'En festivos puede haber salida temprano 5:00-6:00'
@@ -55,7 +88,7 @@ export const translations = {
           footer: 'Llegar temprano, el bus se llena rápido. Autotransportes Blanco Lobo.'
         },
         ferry: {
-          title: 'Ferry',
+          title: 'Lancha',
           weekdays: {
             title: 'Lunes a Viernes',
             pjToGolfito: 'PJZ → Golfito: 07:45 • 10:00 • 11:00 • 12:30 • 15:00',
@@ -182,6 +215,15 @@ export const translations = {
           mangroves: 'Manglares y esteros'
         }
       },
+      ui: {
+        eyebrow: 'Explorar',
+        badgeLabel: 'Categoría',
+        focusLabel: 'Enfoque',
+        focusValue: 'Senderos, playas y áreas protegidas',
+        toneLabel: 'Tono',
+        toneValue: 'Informativo y cercano',
+        mapLabel: 'Mapa'
+      },
       sites: 'sitios',
       categories: {
         beaches: 'Playas',
@@ -205,6 +247,15 @@ export const translations = {
           hotels: 'Hoteles y lodges',
           health: 'Salud y supermercados'
         }
+      },
+      ui: {
+        eyebrow: 'Directorio',
+        badgeLabel: 'Categoría',
+        focusLabel: 'Enfoque',
+        focusValue: 'Hospedaje, comida y servicios esenciales',
+        toneLabel: 'Tono',
+        toneValue: 'Práctico y estructurado',
+        mapLabel: 'Mapa'
       },
       options: 'opciones',
       categories: {
@@ -233,6 +284,14 @@ export const translations = {
           fishing: 'Pesca artesanal',
           music: 'Música y tradiciones'
         }
+      },
+      ui: {
+        eyebrow: 'Patrimonio',
+        badgeLabel: 'Categoría',
+        focusLabel: 'Enfoque',
+        focusValue: 'Historia, arte y vida cotidiana',
+        toneLabel: 'Tono',
+        toneValue: 'Respetuoso y editorial'
       },
       aspectsTitle: 'Aspectos culturales',
       experiencesTitle: 'Experiencias culturales',
@@ -297,8 +356,41 @@ export const translations = {
           ecotourism: '🌳 Ecotourism'
         }
       },
+      tourOperators: {
+        eyebrow: 'Local operators',
+        title: 'Recommended Tour Operators',
+        subtitle: 'These options help you coordinate Corcovado tours, transport, and logistics directly with local teams.',
+        visitCta: 'Visit operator',
+        operators: {
+          jaguar: {
+            description: 'Specialized in guided experiences in and around Corcovado, with adventure options for different travel styles.'
+          },
+          guia: {
+            description: 'Operator focused on certified guides and custom routes to explore rainforest, beaches, and wildlife.'
+          },
+          sirena: {
+            description: 'Day-tour alternative focused on Sirena, ideal for travelers who want a complete experience in one day.'
+          }
+        }
+      },
+      ui: {
+        destinationLabel: 'Destination',
+        destinationValue: 'Osa Peninsula, Costa Rica',
+        focusLabel: 'Focus',
+        focusValue: 'Nature, logistics, and local services',
+        styleLabel: 'Style',
+        styleValue: 'Serious, clear, and usable',
+        howToGetHereEyebrow: 'How to get here',
+        routeLabels: {
+          land: 'Land route',
+          sea: 'Sea route',
+          air: 'Air route'
+        },
+        locationTitle: 'Location',
+        locationCity: 'Puerto Jiménez, Puntarenas, Costa Rica'
+      },
       howToGetHere: {
-        title: '🚌 How to Get Here',
+        title: 'How to Get Here',
         subtitle: 'Multiple options to reach your tropical paradise',
         bus: {
           title: 'Bus',
@@ -311,7 +403,7 @@ export const translations = {
           },
           pjToSj: {
             title: 'Puerto Jiménez → San José',
-            departure: 'Departure: 12:00 noon',
+            departure: 'Departure: 5:00 am',
             arrival: 'Arrival: ~19:00 (7 hours)',
             price: 'Price: ₡8,500 – ₡9,000 (~$14-$16)',
             note: 'Holidays may have early departure 5:00-6:00'
@@ -319,7 +411,7 @@ export const translations = {
           footer: 'Arrive early, the bus fills up quickly. Autotransportes Blanco Lobo.'
         },
         ferry: {
-          title: 'Ferry',
+          title: 'Water Taxi',
           weekdays: {
             title: 'Monday to Friday',
             pjToGolfito: 'PJZ → Golfito: 07:45 • 10:00 • 11:00 • 12:30 • 15:00',
@@ -446,6 +538,15 @@ export const translations = {
           mangroves: 'Mangroves and estuaries'
         }
       },
+      ui: {
+        eyebrow: 'Explore',
+        badgeLabel: 'Category',
+        focusLabel: 'Focus',
+        focusValue: 'Trails, beaches, and protected areas',
+        toneLabel: 'Tone',
+        toneValue: 'Informative and grounded',
+        mapLabel: 'Map'
+      },
       sites: 'sites',
       categories: {
         beaches: 'Beaches',
@@ -469,6 +570,15 @@ export const translations = {
           hotels: 'Hotels and lodges',
           health: 'Health and supermarkets'
         }
+      },
+      ui: {
+        eyebrow: 'Directory',
+        badgeLabel: 'Category',
+        focusLabel: 'Focus',
+        focusValue: 'Stay, food, and essentials',
+        toneLabel: 'Tone',
+        toneValue: 'Practical and structured',
+        mapLabel: 'Map'
       },
       options: 'options',
       categories: {
@@ -497,6 +607,14 @@ export const translations = {
           fishing: 'Artisanal fishing',
           music: 'Music and traditions'
         }
+      },
+      ui: {
+        eyebrow: 'Heritage',
+        badgeLabel: 'Category',
+        focusLabel: 'Focus',
+        focusValue: 'History, arts, and daily life',
+        toneLabel: 'Tone',
+        toneValue: 'Respectful and editorial'
       },
       aspectsTitle: 'Cultural Aspects',
       experiencesTitle: 'Cultural Experiences',
