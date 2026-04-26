@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useI18n } from '../i18n/I18nContext'
 import { TideInfo } from '../components/TideInfo'
 import { WeatherInfo } from '../components/WeatherInfo'
@@ -34,10 +34,13 @@ const TOUR_OPERATORS: { key: TourOperatorKey; name: string; url: string; imageUr
 
 const EXCHANGE_RATE_CACHE_KEY = 'pj_usd_crc_rate_v1'
 const EXCHANGE_RATE_CACHE_TTL_MS = 12 * 60 * 60 * 1000
+const ADSENSE_CLIENT_ID = 'ca-pub-1209651759975374'
+const ADSENSE_SLOT_ID = (import.meta.env.VITE_ADSENSE_SLOT_ID as string | undefined)?.trim() ?? ''
 
 function Home() {
   const { t, language } = useI18n()
   const [usdToCrcRate, setUsdToCrcRate] = useState<number | null>(null)
+  const adContainerRef = useRef<HTMLModElement | null>(null)
 
   useEffect(() => {
     const readCachedRate = (): number | null => {
@@ -77,6 +80,18 @@ function Home() {
       }
     }
     fetchRate()
+  }, [])
+
+  useEffect(() => {
+    if (!ADSENSE_SLOT_ID || !adContainerRef.current) return
+
+    try {
+      const ads = window as Window & { adsbygoogle?: unknown[] }
+      if (!ads.adsbygoogle) return
+      ads.adsbygoogle.push({})
+    } catch (err) {
+      console.error('No se pudo inicializar AdSense', err)
+    }
   }, [])
 
   const formattedExchangeRate =
@@ -245,6 +260,23 @@ function Home() {
           <WeatherInfo />
           <TideInfo />
         </div>
+
+        {ADSENSE_SLOT_ID && (
+          <section className="soft-card rounded-3xl p-5 md:p-7 animate-fade-in-up text-slate-100 shadow-glow">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-sand/70">
+              {language === 'es' ? 'Publicidad' : 'Advertisement'}
+            </p>
+            <ins
+              ref={adContainerRef}
+              className="adsbygoogle block min-h-[120px] w-full overflow-hidden rounded-2xl border border-white/10 bg-black/20"
+              style={{ display: 'block' }}
+              data-ad-client={ADSENSE_CLIENT_ID}
+              data-ad-slot={ADSENSE_SLOT_ID}
+              data-ad-format="auto"
+              data-full-width-responsive="true"
+            />
+          </section>
+        )}
 
         {/* ── HOW TO GET HERE ── */}
         <section className="soft-card space-y-5 rounded-3xl p-5 md:p-7 animate-fade-in-up animate-delay-200 text-slate-100 shadow-glow">
