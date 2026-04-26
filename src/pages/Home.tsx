@@ -182,7 +182,13 @@ function Home() {
         </div>
       </section>
 
-      <div className="space-y-8 py-8">
+      <div className="relative space-y-8 overflow-hidden py-8">
+        {/* Gradient blobs — visible through semi-transparent cards */}
+        <div className="pointer-events-none absolute -left-32 -top-16 h-[28rem] w-[28rem] rounded-full bg-sun/[0.13] blur-3xl" />
+        <div className="pointer-events-none absolute -right-32 top-40 h-[24rem] w-[24rem] rounded-full bg-sea/[0.11] blur-3xl" />
+        <div className="pointer-events-none absolute bottom-1/3 left-1/4 h-[20rem] w-[20rem] rounded-full bg-sun/[0.07] blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-16 right-1/4 h-[22rem] w-[22rem] rounded-full bg-sea/[0.09] blur-3xl" />
+
         {/* ── BEST DESTINATION ── */}
         <section className="animate-fade-in-up">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
