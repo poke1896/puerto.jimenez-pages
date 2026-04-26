@@ -9,10 +9,10 @@ function App() {
 
   const navClass = ({ isActive }: { isActive: boolean }) =>
     [
-      'rounded-full px-3.5 py-2 text-sm font-semibold transition-all duration-200',
+      'rounded-full px-4 py-2 text-sm font-semibold tracking-wide transition-all duration-200',
       isActive
-        ? 'bg-white text-slate-950 shadow-sm'
-        : 'text-slate-300 hover:bg-white/10 hover:text-white'
+        ? 'bg-sand text-jungle shadow-sun'
+        : 'text-slate-200 hover:bg-white/10 hover:text-white'
     ].join(' ')
 
   const toggleLanguage = () => {
@@ -31,15 +31,15 @@ function App() {
   return (
     <div className="app-shell text-slate-100">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 md:gap-12 px-4 md:px-6 py-6 md:py-10 lg:py-12">
-        <header className="sticky top-2 md:top-4 z-50 rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 shadow-lg shadow-black/20 backdrop-blur-xl md:rounded-full md:px-6 md:py-4 animate-fade-in">
+        <header className="sticky top-2 md:top-4 z-50 rounded-2xl border border-white/10 bg-jungle/80 px-4 py-3 shadow-xl shadow-black/30 backdrop-blur-xl md:rounded-full md:px-6 md:py-4 animate-fade-in">
           <div className="flex items-center justify-between w-full">
             <Link to="/" className="flex items-center gap-2" onClick={closeMenu}>
-              <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white text-xs font-bold tracking-[0.2em] text-slate-950">
+              <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-sand text-xs font-bold tracking-[0.24em] text-jungle shadow-sun">
                 PJ
               </span>
               <div>
                 <span className="font-display text-lg md:text-xl font-bold text-white">{t.header.title}</span>
-                <p className="text-xs font-medium tracking-wide text-slate-400">{t.header.subtitle}</p>
+                <p className="text-xs font-medium tracking-wide text-slate-300">{t.header.subtitle}</p>
               </div>
             </Link>
             
@@ -55,7 +55,7 @@ function App() {
               </div>
             </button>
 
-            <nav className="hidden md:flex items-center gap-2 text-xs md:text-sm font-semibold text-slate-300">
+            <nav className="hidden md:flex items-center gap-2 text-xs md:text-sm font-semibold text-slate-200">
               <NavLink to="/" className={navClass} end>
                 {t.header.nav.home}
               </NavLink>
@@ -93,22 +93,22 @@ function App() {
 
         <button
           onClick={toggleLanguage}
-          className="fixed bottom-4 right-4 z-50 flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-3 text-sm font-semibold text-white shadow-2xl shadow-black/20 transition-transform hover:scale-[1.03] md:bottom-8 md:right-8 animate-fade-in backdrop-blur-xl"
+          className="fixed bottom-4 right-4 z-50 flex items-center gap-2 rounded-full border border-white/10 bg-jungle/80 px-4 py-3 text-sm font-semibold text-white shadow-2xl shadow-black/30 transition-transform hover:scale-[1.03] md:bottom-8 md:right-8 animate-fade-in backdrop-blur-xl"
           title={language === 'es' ? 'Cambiar a inglés' : 'Switch to Spanish'}
         >
           <span className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-300">Lang</span>
           <span className="text-sm">{language === 'es' ? 'EN' : 'ES'}</span>
         </button>
 
-        <footer className="mt-6 rounded-3xl border border-white/10 bg-slate-950/70 px-4 py-6 text-center shadow-lg shadow-black/20 backdrop-blur md:mt-12 md:px-6 md:py-8 md:text-left animate-fade-in-up">
+        <footer className="mt-6 rounded-3xl border border-white/10 bg-jungle/80 px-4 py-6 text-center shadow-lg shadow-black/30 backdrop-blur md:mt-12 md:px-6 md:py-8 md:text-left animate-fade-in-up">
           <div className="flex flex-col gap-3 md:gap-4 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-3 justify-center md:justify-start">
-              <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white text-xs font-bold tracking-[0.2em] text-slate-950">
+              <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-sand text-xs font-bold tracking-[0.24em] text-jungle shadow-sun">
                 PJ
               </span>
               <div>
                 <p className="font-display text-lg md:text-xl font-bold text-white">{t.footer.title}</p>
-                <p className="text-xs md:text-sm font-medium text-slate-400">{t.footer.subtitle}</p>
+                <p className="text-xs md:text-sm font-medium text-slate-300">{t.footer.subtitle}</p>
               </div>
             </div>
             <div className="flex flex-wrap justify-center gap-3 text-sm text-slate-300">

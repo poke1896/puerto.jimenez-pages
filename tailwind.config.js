@@ -7,16 +7,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        jungle: '#0f2f26',
-        dusk: '#0b1b16',
-        sand: '#f3f0e9',
+        jungle: '#14362d',
+        dusk: '#0b1712',
+        sand: '#f2ead8',
+        sea: '#5ab7b2',
+        sun: '#f4b25f',
+        coral: '#e67a5f',
+        lagoon: '#1a4c49',
       },
       fontFamily: {
-        sans: ['Manrope', 'Space Grotesk', 'sans-serif'],
-        display: ['Playfair Display', 'serif'],
+        sans: ['Outfit', 'sans-serif'],
+        display: ['Fraunces', 'serif'],
       },
       boxShadow: {
-        glow: '0 18px 60px rgba(0, 0, 0, 0.35)',
+        glow: '0 22px 60px rgba(8, 20, 16, 0.45)',
+        sun: '0 20px 55px rgba(244, 178, 95, 0.35)',
       },
     },
   },

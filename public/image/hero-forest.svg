@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f2ead8"/>
+      <stop offset="100%" stop-color="#cfe4de"/>
+    </linearGradient>
+    <linearGradient id="forest" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#14362d"/>
+      <stop offset="100%" stop-color="#1a4c49"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#mist)"/>
+  <path d="M0 520 C 200 470, 420 560, 640 520 C 860 480, 1020 570, 1200 520 L1200 800 L0 800 Z" fill="url(#forest)"/>
+  <path d="M120 520 L240 320 L360 520 Z" fill="#1f5a4f"/>
+  <path d="M360 520 L480 300 L600 520 Z" fill="#1b4f44"/>
+  <path d="M640 520 L760 300 L880 520 Z" fill="#1f5a4f"/>
+  <path d="M880 520 L1000 320 L1120 520 Z" fill="#1b4f44"/>
+</svg>

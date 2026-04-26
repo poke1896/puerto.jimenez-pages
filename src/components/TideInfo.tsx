@@ -212,16 +212,16 @@ export function TideInfo() {
 
   if (loading) {
     return (
-        <div className="soft-card p-4 md:p-6 space-y-3 md:space-y-4 bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 animate-fade-in-up">
+      <div className="glass-card glass-card--cool p-4 md:p-6 space-y-3 md:space-y-4 animate-fade-in-up">
           <div className="flex items-center gap-2 md:gap-3">
-            <div className="p-2 md:p-3 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl text-white text-xl md:text-2xl lg:text-3xl shadow-lg animate-pulse">
+            <div className="p-2 md:p-3 bg-gradient-to-br from-sea to-lagoon rounded-2xl text-white text-xl md:text-2xl lg:text-3xl shadow-lg animate-pulse">
             🌊
           </div>
           <div>
-              <h2 className="font-display text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              <h2 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-sand">
               {language === 'es' ? 'Mareas' : 'Tides'}
             </h2>
-            <p className="text-sm md:text-base text-gray-600">
+            <p className="text-sm md:text-base text-slate-200">
               {language === 'es' ? 'Cargando...' : 'Loading...'}
             </p>
           </div>
@@ -232,16 +232,16 @@ export function TideInfo() {
 
   if (error) {
     return (
-        <div className="soft-card p-4 md:p-6 space-y-3 md:space-y-4 bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 animate-fade-in-up">
+      <div className="glass-card glass-card--cool p-4 md:p-6 space-y-3 md:space-y-4 animate-fade-in-up">
           <div className="flex items-center gap-2 md:gap-3">
-            <div className="p-2 md:p-3 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl text-white text-xl md:text-2xl lg:text-3xl shadow-lg">
+            <div className="p-2 md:p-3 bg-gradient-to-br from-sea to-lagoon rounded-2xl text-white text-xl md:text-2xl lg:text-3xl shadow-lg">
             🌊
           </div>
           <div>
-              <h2 className="font-display text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              <h2 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-sand">
               {language === 'es' ? 'Mareas' : 'Tides'}
             </h2>
-            <p className="text-sm text-red-600">
+            <p className="text-sm text-coral">
               {error === 'FETCH_FAILED'
                 ? (language === 'es'
                     ? 'No se pudo actualizar mareas en este momento.'
@@ -255,20 +255,20 @@ export function TideInfo() {
   }
 
   return (
-      <div className="soft-card p-4 md:p-6 space-y-3 md:space-y-4 bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 animate-fade-in-up">
+      <div className="glass-card glass-card--cool p-4 md:p-6 space-y-3 md:space-y-4 animate-fade-in-up">
         <div className="flex items-center gap-2 md:gap-3">
-          <div className="p-2 md:p-3 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl text-white text-xl md:text-2xl lg:text-3xl shadow-lg">
+          <div className="p-2 md:p-3 bg-gradient-to-br from-sea to-lagoon rounded-2xl text-white text-xl md:text-2xl lg:text-3xl shadow-lg">
           🌊
         </div>
         <div>
-            <h2 className="font-display text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+            <h2 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-sand">
             {language === 'es' ? 'Mareas de Hoy' : "Today's Tides"}
           </h2>
-          <p className="text-sm md:text-base text-gray-600">
+          <p className="text-sm md:text-base text-slate-200">
             {language === 'es' ? 'Información actualizada' : 'Updated information'}
           </p>
           {usingStaleCache ? (
-            <p className="text-xs font-medium text-amber-700">
+            <p className="text-xs font-medium text-sun">
               {language === 'es'
                 ? 'Mostrando datos guardados por falta de conexión con el proveedor.'
                 : 'Showing cached data because the provider is unavailable.'}
@@ -284,24 +284,24 @@ export function TideInfo() {
               key={index}
                 className={`p-3 md:p-4 rounded-xl shadow-md ${
                 extreme.type === 'high'
-                  ? 'bg-gradient-to-br from-cyan-100 to-blue-100 border-2 border-cyan-300'
-                  : 'bg-gradient-to-br from-amber-100 to-orange-100 border-2 border-amber-300'
+                  ? 'bg-white/10 border border-white/10'
+                  : 'bg-white/10 border border-white/10'
               }`}
             >
                 <div className="text-center space-y-1 md:space-y-2">
                   <div className="text-2xl md:text-3xl">
                   {extreme.type === 'high' ? '⬆️' : '⬇️'}
                 </div>
-                  <div className="font-bold text-base md:text-lg">
+                  <div className="font-bold text-base md:text-lg text-sand">
                   {extreme.type === 'high' 
                     ? (language === 'es' ? 'Pleamar' : 'High Tide')
                     : (language === 'es' ? 'Bajamar' : 'Low Tide')
                   }
                 </div>
-                  <div className="text-xl md:text-2xl font-bold text-gray-800">
+                  <div className="text-xl md:text-2xl font-bold text-sand">
                   {formatTime(extreme.time)}
                 </div>
-                  <div className="text-xs md:text-sm text-gray-600">
+                  <div className="text-xs md:text-sm text-slate-200">
                   {formatHeight(extreme.height)}
                 </div>
               </div>
@@ -309,19 +309,19 @@ export function TideInfo() {
           ))}
         </div>
       ) : (
-        <p className="text-gray-600 text-center">
+        <p className="text-slate-200 text-center">
           {language === 'es' ? 'No hay datos disponibles' : 'No data available'}
         </p>
       )}
 
-      <div className="text-xs text-gray-500 text-center pt-2 border-t border-gray-200">
+      <div className="text-xs text-sand/70 text-center pt-2 border-t border-white/10">
         {language === 'es' ? 'Datos proporcionados por' : 'Data provided by'}{' '}
         {provider === 'marea' ? (
-          <a href="https://api.marea.ooo/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+          <a href="https://api.marea.ooo/" target="_blank" rel="noopener noreferrer" className="text-sand hover:underline">
             Marea
           </a>
         ) : (
-          <a href="https://stormglass.io" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+          <a href="https://stormglass.io" target="_blank" rel="noopener noreferrer" className="text-sand hover:underline">
             Stormglass.io
           </a>
         )}

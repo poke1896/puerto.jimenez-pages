@@ -121,15 +121,15 @@ export function WeatherInfo() {
 
   if (loading || !weather) {
     return (
-        <div className="soft-card p-4 md:p-6 bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 animate-fade-in-up">
+      <div className="glass-card glass-card--warm p-4 md:p-6 animate-fade-in-up">
         <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 md:gap-3">
               <div className="text-2xl md:text-3xl animate-pulse">🌤️</div>
             <div>
-                <p className="text-xs md:text-sm text-gray-500">
+                <p className="text-xs md:text-sm text-sand/70">
                 {language === 'es' ? 'Clima' : 'Weather'}
               </p>
-              <p className="text-sm font-semibold text-gray-600">
+              <p className="text-sm font-semibold text-slate-200">
                 {language === 'es' ? 'Cargando...' : 'Loading...'}
               </p>
             </div>
@@ -151,17 +151,17 @@ export function WeatherInfo() {
   )
 
   return (
-    <div className="soft-card animate-fade-in-up border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-4 md:p-6">
+    <div className="glass-card glass-card--warm animate-fade-in-up p-4 md:p-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="flex items-center gap-2 md:gap-3">
           <div className="text-3xl md:text-4xl">
             {getWeatherIcon(weather.current.weather_code)}
           </div>
           <div>
-            <p className="text-xs font-semibold text-gray-500 md:text-sm">
+            <p className="text-xs font-semibold text-sand/70 md:text-sm">
               {language === 'es' ? 'Clima Actual' : 'Current Weather'}
             </p>
-            <p className="text-sm font-medium text-gray-700">
+            <p className="text-sm font-medium text-slate-200">
               {getWeatherDescription(weather.current.weather_code, language)}
             </p>
           </div>
@@ -169,60 +169,60 @@ export function WeatherInfo() {
 
         <div className="grid grid-cols-3 gap-3 md:gap-4">
           <div className="text-center">
-            <p className="text-2xl font-bold text-orange-600 md:text-3xl">
+            <p className="text-2xl font-bold text-sun md:text-3xl">
               {Math.round(weather.current.temperature_2m)}°
             </p>
-            <p className="text-xs text-gray-500">{language === 'es' ? 'Temp' : 'Temp'}</p>
+            <p className="text-xs text-sand/70">{language === 'es' ? 'Temp' : 'Temp'}</p>
           </div>
 
-          <div className="border-l border-gray-300 pl-3 text-center md:pl-4">
-            <p className="text-base font-semibold text-blue-600 md:text-lg">
+          <div className="border-l border-white/10 pl-3 text-center md:pl-4">
+            <p className="text-base font-semibold text-sea md:text-lg">
               {weather.current.relative_humidity_2m}%
             </p>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-sand/70">
               {language === 'es' ? 'Humedad' : 'Humidity'}
             </p>
           </div>
 
-          <div className="border-l border-gray-300 pl-3 text-center md:pl-4">
-            <p className="text-base font-semibold text-teal-600 md:text-lg">
+          <div className="border-l border-white/10 pl-3 text-center md:pl-4">
+            <p className="text-base font-semibold text-sea md:text-lg">
               {Math.round(weather.current.wind_speed_10m)}
             </p>
-            <p className="text-xs text-gray-500">km/h</p>
+            <p className="text-xs text-sand/70">km/h</p>
           </div>
         </div>
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
-          <div className="rounded-xl border border-amber-200 bg-white/60 p-3 text-center">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">UV max</p>
-            <p className="mt-1 text-base font-bold text-amber-700">{uvToday}</p>
+          <div className="rounded-xl border border-white/10 bg-white/5 p-3 text-center">
+            <p className="text-xs font-semibold uppercase tracking-wide text-sand/70">UV max</p>
+            <p className="mt-1 text-base font-bold text-sun">{uvToday}</p>
           </div>
-          <div className="rounded-xl border border-amber-200 bg-white/60 p-3 text-center">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          <div className="rounded-xl border border-white/10 bg-white/5 p-3 text-center">
+            <p className="text-xs font-semibold uppercase tracking-wide text-sand/70">
               {language === 'es' ? 'Lluvia' : 'Rain chance'}
             </p>
-            <p className="mt-1 text-base font-bold text-sky-700">{rainProbToday}%</p>
+            <p className="mt-1 text-base font-bold text-sea">{rainProbToday}%</p>
           </div>
-          <div className="rounded-xl border border-amber-200 bg-white/60 p-3 text-center">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          <div className="rounded-xl border border-white/10 bg-white/5 p-3 text-center">
+            <p className="text-xs font-semibold uppercase tracking-wide text-sand/70">
               {language === 'es' ? 'Amanecer' : 'Sunrise'}
             </p>
-            <p className="mt-1 text-base font-bold text-emerald-700">{sunrise}</p>
+            <p className="mt-1 text-base font-bold text-sand">{sunrise}</p>
           </div>
-          <div className="rounded-xl border border-amber-200 bg-white/60 p-3 text-center">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          <div className="rounded-xl border border-white/10 bg-white/5 p-3 text-center">
+            <p className="text-xs font-semibold uppercase tracking-wide text-sand/70">
               {language === 'es' ? 'Atardecer' : 'Sunset'}
             </p>
-            <p className="mt-1 text-base font-bold text-violet-700">{sunset}</p>
+            <p className="mt-1 text-base font-bold text-sun">{sunset}</p>
           </div>
         </div>
 
-      <div className="mt-3 rounded-xl border border-amber-200 bg-white/70 px-3 py-2">
-        <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+      <div className="mt-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+        <p className="text-xs font-semibold uppercase tracking-wide text-sand/70">
           {language === 'es' ? 'Tip para hoy' : 'Today tip'}
         </p>
-        <p className="mt-1 text-sm text-gray-700">{suggestion}</p>
+        <p className="mt-1 text-sm text-slate-200">{suggestion}</p>
       </div>
     </div>
   )
